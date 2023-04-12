@@ -6,12 +6,12 @@ exports.Casino = void 0;
 //que lo componen
 class Casino {
     constructor(nombre, cantSalas, sala1, sala2, sala3) {
-        this.nombre = nombre;
-        this.cantSalas = cantSalas;
-        this.sala1 = sala1;
-        this.sala2 = sala2;
+        this.nombre = nombre; //constructor me sirve para crear las instancias de los 
+        this.cantSalas = cantSalas; //nuevos objetos
+        this.sala1 = sala1; //inicializamos variables
+        this.sala2 = sala2; //se le asigna el parámetro correspondiente
         this.sala3 = sala3;
-    }
+    } //fin constructor
     setNombre(nombre) {
         this.nombre = nombre;
     }
@@ -42,5 +42,5 @@ class Casino {
     getSala3() {
         return this.sala3;
     }
-}
+} //final de la clase
 exports.Casino = Casino;
