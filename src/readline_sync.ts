@@ -1,4 +1,4 @@
-let saludar: string = "hola mundo";
+/* let saludar: string = "hola mundo";
 let mensaje: string = saludar;
 console.log(mensaje);
 let readlineSync = require('readline-sync');//npm i --save-dev @types/node//instalar para que require no de error
@@ -7,4 +7,4 @@ console.log(alturaPersona);
 const base = readlineSync.question("indique la base: ");
 const altura = readlineSync.question("indique la altura: ");
 const resultado = base * altura;
-console.log(resultado); 
+console.log(resultado);  */
