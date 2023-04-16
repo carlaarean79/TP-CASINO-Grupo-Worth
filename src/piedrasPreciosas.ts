@@ -36,13 +36,16 @@ public getLinea3 ():number[] {
     return this.linea3;
 }
 
-realizarApuesta():boolean {
+inicioJuego():boolean {
     return true
 }
     pagarPremio():string {
         return ""
     }
     probabilidadDeGanar():void {
+        
+    }
+    apostar(): void {
         
     }
 
