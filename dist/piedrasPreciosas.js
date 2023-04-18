@@ -27,13 +27,15 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
     getLinea3() {
         return this.linea3;
     }
-    realizarApuesta() {
+    inicioJuego() {
         return true;
     }
     pagarPremio() {
         return "";
     }
     probabilidadDeGanar() {
+    }
+    apostar() {
     }
 } // fin de la sub clase
 exports.PiedrasPreciosas = PiedrasPreciosas;

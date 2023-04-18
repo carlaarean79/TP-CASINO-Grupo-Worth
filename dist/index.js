@@ -5,11 +5,11 @@ const Tragamonedas_1 = require("./Tragamonedas");
 const ruleta_1 = require("./ruleta");
 const dados_1 = require("./dados");
 let Tragamonedas01 = new Tragamonedas_1.Tragamonedas("piedras preciosas", "manzana", 10, 100);
-let Ruleta01 = new ruleta_1.Ruleta();
+let Ruleta01 = new ruleta_1.Ruleta(5000);
 let dados01 = new dados_1.Dados();
 let casino01 = new casino_1.Casino("Casino Royal", 3, Tragamonedas01, dados01, Ruleta01); //nueva instancia de casino//nuevo casino
 let Tragamonedas02 = new Tragamonedas_1.Tragamonedas("piedras preciosas", "manzana", 10, 100);
-let Ruleta02 = new ruleta_1.Ruleta();
+let Ruleta02 = new ruleta_1.Ruleta(6000);
 let dados02 = new dados_1.Dados();
 let casino02 = new casino_1.Casino("Casino Miami", 3, Tragamonedas02, dados02, Ruleta02);
 console.log(casino01); //muestro como quedó contruido mi nuevo casino

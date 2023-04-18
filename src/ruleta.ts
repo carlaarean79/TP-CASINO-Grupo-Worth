@@ -3,6 +3,7 @@ import { Jugar } from "./interface";
 import * as readlineSync from "readline-sync";
 
     export class Ruleta extends Apuesta implements Jugar {
+      
         public constructor($$Disponible: number, $$apuesta?: number) {
           super($$Disponible, $$apuesta);
         }
