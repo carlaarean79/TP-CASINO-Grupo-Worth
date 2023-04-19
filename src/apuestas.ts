@@ -1,6 +1,6 @@
 import * as readlineSync from "readline-sync";
 
-export class Apuesta {  // Comiezo de la clase Apuesta //superclase, padre
+export class Apuestas {  // Comiezo de la clase Apuesta //superclase, padre
 
     protected dineroApuesta : number; // Declaracion de miembros datos // Variable internas.
     protected dineroDisponible : number; // Portected :  modificador de acceso con el cual , las clase que lo hereden van a tener acceso a ellos. 
