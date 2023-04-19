@@ -23,9 +23,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Apuesta = void 0;
+exports.Apuestas = void 0;
 const readlineSync = __importStar(require("readline-sync"));
-class Apuesta {
+class Apuestas {
     constructor(pdineroDisponible, pdineroApuesta) {
         this.dineroDisponible = pdineroDisponible; // con this. se transformo las variabels en objetos 
         pdineroApuesta ? this.dineroApuesta = pdineroApuesta : this.dineroApuesta = 0; // el signo ? es un operador ternario (operador condicional ) y lo que hace es la sintaxis de la condicion IF -- ELSE.
@@ -44,11 +44,11 @@ class Apuesta {
         return this.dineroDisponible;
     }
     elegirSala() {
-        let juegos = [" Tragamonedas Diamantes", " Tragamonedas Frutal", " Ruleta", " Dados"]; //crea un arreglo con las opciones de juego
+        let juegos = [" Tragamonedas Piedras Preciosas", " Tragamonedas Frutal", " Ruleta", " Dados"]; //crea un arreglo con las opciones de juego
         let sala = readlineSync.keyInSelect(juegos, "Elija una opcion"); //keyInSelect es un metodo de la libreria readlinesync
         console.log(//deja que el usuario elija un elemento de la lista
         `El juego elegido es ${juegos[sala]}` //muestra el juego elegido
         );
     }
 } // fin de la clase Apuesta
-exports.Apuesta = Apuesta;
+exports.Apuestas = Apuestas;

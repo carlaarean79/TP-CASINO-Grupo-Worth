@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tragamonedas = void 0;
 const apuestas_1 = require("./apuestas");
-class Tragamonedas extends apuestas_1.Apuesta {
+class Tragamonedas extends apuestas_1.Apuestas {
     constructor(pTema1, pTema2, pPozoAcumulado, pdineroDisponible, pdineroApuesta) {
         super(pdineroDisponible, pdineroApuesta); //se hace llamada al constructor de la super clase apuesta
         this.tema1 = pTema1; //se coloca parametros sin el tipo

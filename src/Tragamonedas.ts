@@ -1,6 +1,6 @@
-import { Apuesta } from "./apuestas";
+import { Apuestas } from "./apuestas";
 
-export class Tragamonedas extends Apuesta{ //sub clase
+export class Tragamonedas extends Apuestas{ //sub clase
     protected tema1:string; //se llaman miembros datos/variables internas o atributos (caracteristicas del
     protected tema2:string; //objeto)
     protected pozoAcumulado:number;
