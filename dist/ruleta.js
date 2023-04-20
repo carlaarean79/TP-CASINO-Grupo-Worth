@@ -44,7 +44,29 @@ class Ruleta extends apuestas_1.Apuestas {
         return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
     }
     inicioJuego() {
-        throw new Error("Method not implemented.");
+        let nroApuesta;
+        nroApuesta = readlineSync.questionInt(colors_1.default.rainbow("Sera su dia de suerte? Compruebelo!! Cual numero elige?:  "));
+        this.apostar();
+        let dado1 = Math.floor(Math.random() * 6) + 1;
+        let dado2 = Math.floor(Math.random() * 6) + 1;
+        if (dado1 == dado2 && nroApuesta) {
+            console.log(colors_1.default.red(`********Usted eligio al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}**********`), colors_1.default.blue(` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`), colors_1.default.bgMagenta(`usted ha ganado!!--------`), colors_1.default.yellow(`$$$$$$ SALDO DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 5}$${this.pagarPremio()}--------------`));
+            return true;
+        }
+        else {
+            console.log(colors_1.default.yellow(`*********Usted eligió  al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}*********`), colors_1.default.red(`--------EL PAR DE DADOS GANADOR ES: ${dado1} y ${dado2}:`), colors_1.default.bgRed(`usted ha perdido!!---------`), ` $$$$$ SALDO DISPONIBLE: ${this.dineroDisponible}$`);
+            let seguirAbandonar; //le da al usuario la posibilidad de elegir si sigue o no apostando
+            seguirAbandonar = readlineSync.question(colors_1.default.blue(`_________________________
+          ¿ DESEA SEGUIR APOSTANDO ?
+               Responda S/N :  `));
+            if (seguirAbandonar == "S") { //si elije si,  vuelve al inicio del metodo inicioJuego()
+                this.inicioJuego();
+            }
+            else {
+                this.elegirSala(); //si elije que no ejecuta el metodo elegir sala
+            }
+            return false;
+        }
     }
     pagarPremio() {
         throw new Error("Method not implemented.");

@@ -1,30 +1,22 @@
 import { Apuestas } from "./apuestas";
+import * as readlineSync from 'readline-sync';
 
 export class Tragamonedas extends Apuestas{ //sub clase
-    protected tema1:string; //se llaman miembros datos/variables internas o atributos (caracteristicas del
-    protected tema2:string; //objeto)
+    protected salaNro:number; //se llaman miembros datos/variables internas o atributos (caracteristicas del //objeto)
  /*    protected pozoAcumulado:number; */
-    public constructor (pTema1:string,pTema2:string,/* pPozoAcumulado:number, */pdineroDisponible:number, pdineroApuesta?:number) { //se inicializan las variables internas y se le asignan un parametro a cada una y tambien se agregan los parametros del constructor de la super clase
+    public constructor (psalaNro:number,/* pPozoAcumulado:number, */pdineroDisponible:number, pdineroApuesta?:number) { //se inicializan las variables internas y se le asignan un parametro a cada una y tambien se agregan los parametros del constructor de la super clase
     super(pdineroDisponible, pdineroApuesta) //se hace llamada al constructor de la super clase apuesta
-        this.tema1 = pTema1; //se coloca parametros sin el tipo
-        this.tema2 = pTema2;
+        this.salaNro = psalaNro; //se coloca parametros sin el tipo
+        
         /* this.pozoAcumulado = pPozoAcumulado; */
     } //fin constructor
 
-public setTema1 (pTema1:string):void {
-    this.tema1 = pTema1; //con el set se ingresan o modifican datos
+public setSalaNro (pSalaNro:number):void {
+    this.salaNro = pSalaNro; 
 }
 
-public getTema1 ():string { //con el get muestra los datos que ingrese por el set
-    return this.tema1;
-}
-
-public setTema2 (pTema2:string):void {
-    this.tema2 = pTema2; 
-}
-
-public getTema2 ():string {
-    return this.tema2;
+public getSalaNro ():number {
+    return this.salaNro;
 }
 
 /* public setPozoAcumulado (pozoAcumulado:number):void {
@@ -36,7 +28,10 @@ public getPozoAcumulado ():number {
 }
  */
 public elegirTema () {
-    
-}
-
+        let temas = [" Tragamonedas Piedras Preciosas"," Tragamonedas Frutal"];//crea un arreglo con las opciones de juego
+        let sala = readlineSync.keyInSelect(temas, "Elija un tema");//keyInSelect es un metodo de la libreria readlinesync
+        console.log(                                                    //deja que el usuario elija un elemento de la lista
+          `El juego elegido es ${temas[sala]}`//muestra el tema elegido
+        );
+      }      
 }

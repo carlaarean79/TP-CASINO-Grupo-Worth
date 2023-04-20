@@ -31,8 +31,8 @@ const Tragamonedas_1 = require("./Tragamonedas");
 const colors_1 = __importDefault(require("colors"));
 const readlineSync = __importStar(require("readline-sync"));
 class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
-    constructor(/* linea1:number[],linea2:number[],linea3:number[], */ pozoAcumulado, pTema1, pTema2, pdineroDisponible, pdineroApuesta) {
-        super(pTema1, pTema2, /* pPozoAcumulado */ pdineroDisponible, pdineroApuesta); //y del padre del padre, y en la super clase tambien
+    constructor(/* linea1:number[],linea2:number[],linea3:number[], */ psalaNro, pozoAcumulado, pdineroDisponible, pdineroApuesta) {
+        super(psalaNro, /* pPozoAcumulado */ pdineroDisponible, pdineroApuesta); //y del padre del padre, y en la super clase tambien
         /*  this.linea1 = [3];
          this.linea2 = [3];
          this.linea3 = [3]; */
@@ -70,7 +70,7 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
     inicioJuego() {
         console.log(colors_1.default.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
         this.apostar();
-        console.log(`***tulin tulin---pimpollo---tulin tulin---mi alma***`);
+        console.log(`***tulin tulin---tulin tulin---***`);
         let lineas1 = ["Diamante", "Gema", "Rubi", "Amatista"];
         let aleatorio = lineas1[Math.floor(Math.random() * lineas1.length)];
         let lineas2 = ["Diamante", "Gema", "Rubi", "Amatista"];
@@ -101,9 +101,28 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
         }
     }
     pagarPremio() {
-        return "";
+        if (this.inicioJuego() === true) { //si el resultado final de incioJuego es true
+            console.log(colors_1.default.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
+        }
+        let seguirAbandonar; //luego le pregunta si quiere seguir apostando
+        seguirAbandonar = readlineSync.question(colors_1.default.blue(`_________________________
+             ¿ DESEA SEGUIR APOSTANDO ?
+                   Responda S/N :  `));
+        if (seguirAbandonar == "S") { //si elige si, lo retorna al inicio del juego
+            this.inicioJuego();
+        }
+        else {
+            this.elegirSala(); //sino le da la opcion de elegir sala
+        }
     }
     probabilidadDeGanar() {
+        //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas.
+        let cantLineas;
+        cantLineas = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
+        colors_1.default.bgGreen("Ingrese que cantidad de lineas quiere apostar y vea cuales son sus probabilidades de acertar:  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
+        let probabilidad = Math.floor(Math.random() * 4) + 1; //me devuelve un número aleatorio entre 1 y 4 
+        console.log(colors_1.default.red(`La probabilidad de acertar ${cantLineas} es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
+        return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
     }
     apostar() {
         let apuestaLocal; //variable que almacenara la apuesta ingresada por el usuario
