@@ -3,11 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tragamonedas = void 0;
 const apuestas_1 = require("./apuestas");
 class Tragamonedas extends apuestas_1.Apuestas {
-    constructor(pTema1, pTema2, pPozoAcumulado, pdineroDisponible, pdineroApuesta) {
+    /*    protected pozoAcumulado:number; */
+    constructor(pTema1, pTema2, /* pPozoAcumulado:number, */ pdineroDisponible, pdineroApuesta) {
         super(pdineroDisponible, pdineroApuesta); //se hace llamada al constructor de la super clase apuesta
         this.tema1 = pTema1; //se coloca parametros sin el tipo
         this.tema2 = pTema2;
-        this.pozoAcumulado = pPozoAcumulado;
+        /* this.pozoAcumulado = pPozoAcumulado; */
     } //fin constructor
     setTema1(pTema1) {
         this.tema1 = pTema1; //con el set se ingresan o modifican datos
@@ -21,12 +22,14 @@ class Tragamonedas extends apuestas_1.Apuestas {
     getTema2() {
         return this.tema2;
     }
-    setPozoAcumulado(pozoAcumulado) {
+    /* public setPozoAcumulado (pozoAcumulado:number):void {
         this.pozoAcumulado = pozoAcumulado;
     }
-    getPozoAcumulado() {
+    
+    public getPozoAcumulado ():number {
         return this.pozoAcumulado;
     }
+     */
     elegirTema() {
     }
 }

@@ -3,12 +3,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Frutas = void 0;
 const Tragamonedas_1 = require("./Tragamonedas");
 class Frutas extends Tragamonedas_1.Tragamonedas {
-    constructor(linea1, linea2, linea3, pTema1, pTema2, pPozoAcumulado, pdineroDisponible, pdineroApuesta) {
-        super(pTema1, pTema2, pPozoAcumulado, pdineroDisponible, pdineroApuesta); //y del padre del padre, y en la super clase tambien
+    constructor(/* linea1:number[],linea2:number[],linea3:number[], */ pTema1, pTema2, pPozoAcumulado, pdineroDisponible, pdineroApuesta) {
+        super(pTema1, pTema2, /* pPozoAcumulado, */ pdineroDisponible, pdineroApuesta); //y del padre del padre, y en la super clase tambien
         this.linea1 = [3];
         this.linea2 = [3];
         this.linea3 = [3];
     } // fin constructor  
+    inicioJuego() {
+        throw new Error("Method not implemented.");
+    }
+    apostar() {
+        throw new Error("Method not implemented.");
+    }
     setLinea1(linea1) {
         this.linea1 = linea1;
     }

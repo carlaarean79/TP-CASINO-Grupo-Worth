@@ -2,22 +2,24 @@ import { Casino } from './casino';//importo todas las clases que voy utilizar
 import { Tragamonedas } from './Tragamonedas';
 import { Ruleta } from './ruleta';
 import { Dados } from './dados';
+import { PiedrasPreciosas } from './piedrasPreciosas';
 
 let Tragamonedas01:Tragamonedas= new Tragamonedas("piedras preciosas","manzana", 10, 100);
 let Ruleta01:Ruleta=new Ruleta(5000);
-let dados01:Dados=new Dados();
+let dados01:Dados=new Dados(5000);
+let tragamPiedras:PiedrasPreciosas=new PiedrasPreciosas(4000000,"Piedras Preciosas","Frutal",5000)
 let casino01:Casino = new Casino("Casino Royal",3,Tragamonedas01,dados01,Ruleta01);//nueva instancia de casino//nuevo casino
 let Tragamonedas02:Tragamonedas= new Tragamonedas("piedras preciosas","manzana", 10, 100);
 let Ruleta02:Ruleta=new Ruleta(6000);
-let dados02:Dados=new Dados();
+let dados02:Dados=new Dados(5000);
 let casino02:Casino= new Casino("Casino Miami",3,Tragamonedas02,dados02,Ruleta02);
 
-console.log(casino01);//muestro como quedó contruido mi nuevo casino
+console.log(tragamPiedras.inicioJuego());//muestro como quedó contruido mi nuevo 
 
-casino01.setNombre("Casino Las Vegas");//settear el nombre y se lo vamos a cambiar por Casino las vegas
+/* casino01.setNombre("Casino Las Vegas");//settear el nombre y se lo vamos a cambiar por Casino las vegas
 console.log(casino01.getNombre());//mostramos el procedimiento anterior
 
 console.log(casino01);//volvemos a mostrar el objeto casino pero con los cambios realizados
-
+ */
 
 

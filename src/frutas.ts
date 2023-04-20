@@ -5,12 +5,18 @@ export class Frutas extends Tragamonedas implements Jugar { //inicio de la sub c
     private linea1:number[];
     private linea2:number[];
     private linea3:number[];
-    public constructor (linea1:number[],linea2:number[],linea3:number[],pTema1:string,pTema2:string,pPozoAcumulado:number,pdineroDisponible:number, pdineroApuesta?:number) { //se agrega parametros del padre
-        super (pTema1,pTema2,pPozoAcumulado,pdineroDisponible, pdineroApuesta)//y del padre del padre, y en la super clase tambien
+    public constructor (/* linea1:number[],linea2:number[],linea3:number[], */pTema1:string,pTema2:string,pPozoAcumulado:number,pdineroDisponible:number, pdineroApuesta?:number) { //se agrega parametros del padre
+        super (pTema1,pTema2,/* pPozoAcumulado, */pdineroDisponible, pdineroApuesta)//y del padre del padre, y en la super clase tambien
             this.linea1 = [3];
             this.linea2 = [3];
             this.linea3 = [3];
     } // fin constructor  
+    inicioJuego(): boolean {
+        throw new Error("Method not implemented.");
+    }
+    apostar(): void {
+        throw new Error("Method not implemented.");
+    }
     
 public setLinea1 (linea1:number[]):void {
     this.linea1 = linea1
