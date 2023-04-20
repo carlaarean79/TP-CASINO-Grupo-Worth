@@ -60,28 +60,32 @@ inicioJuego():boolean {
         let lineas4 = ["Diamante","Gema","Rubi","Amatista"]
         let aleatorio4=lineas3[Math.floor(Math.random()*lineas4.length)]
         console.log(colors.bgMagenta(`Su juego  Lineas -->  ${aleatorio} ----${aleatorio2} ----- ${aleatorio3}----${aleatorio4}`));
-        if(aleatorio == aleatorio2 ==  aleatorio3 == aleatorio4){
+        if((aleatorio === aleatorio3 && aleatorio !== aleatorio2 && aleatorio !== aleatorio4) ||
+         (aleatorio === aleatorio4 && aleatorio !== aleatorio2 && aleatorio !== aleatorio3) ||
+         (aleatorio2 === aleatorio3 && aleatorio2 !== aleatorio && aleatorio2 !== aleatorio4) ||
+         (aleatorio2 === aleatorio4 && aleatorio2 !== aleatorio && aleatorio2 !== aleatorio3) ||
+         (aleatorio3 === aleatorio4 && aleatorio3 !== aleatorio && aleatorio3 !== aleatorio2)){
           console.log(colors.yellow(
            ` Acierto de 2 lineas. Usted gana $ ${this.dineroApuesta + 2000}`),
            colors.red(`TOTAL ACUMULADO ${this.dineroDisponible + this.dineroApuesta + 2000}`));
-           if(aleatorio = aleatorio2 = aleatorio3 = aleatorio4)){
+          } if((aleatorio === aleatorio2) && (aleatorio2 === aleatorio3)&& (aleatorio3===aleatorio4)){
             console.log(colors.bgBlue(
                 `Acierto de 3 lineas. Usted gana $ ${this.dineroApuesta + 5000}`),
                 colors.red(`TOTAL ACUMULADO ${this.dineroDisponible + this.dineroApuesta + 5000}`));
             console.log(`Dinero disponible ${this.dineroDisponible++}`);
-                if((aleatorio = aleatorio2) && (aleatorio2 = aleatorio3) && (aleatorio3 = aleatorio4)){
+            }    if(aleatorio === aleatorio2 && aleatorio === aleatorio3 && aleatorio === aleatorio4){
                     console.log(colors.bgCyan(
                         `HA ACERTADO LAS 4 LINEAS!!!!! USTED GANA ${this.pozoAcumulado + this.dineroApuesta} `));
                         return true;
-                    }
-                }
                     } else{
+                             
           console.log(colors.bgRed(
             `Sin aciertos!! Usted pierde ${this.dineroApuesta --} Desea apostar nuavemente?`));
+            return false;     
            }
-           return false;     
         }
 
+        
     pagarPremio():string {
         return ""
     }
