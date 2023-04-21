@@ -100,7 +100,7 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
       }
       console.log(colors.red(`SE LE RESTAN ${this.dineroApuesta}`)); //muestra el monto de la apuesta
       console.log(colors.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`)); //muestra por consola el dinero disponible
-    } while (apuestaLocal <= 0); //mientras que
+    } while (apuestaLocal < 0); //mientras que
     
   }
 }

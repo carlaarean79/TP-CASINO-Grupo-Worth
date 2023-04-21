@@ -32,7 +32,7 @@ const colors_1 = __importDefault(require("colors"));
 const apuestas_1 = require("./apuestas");
 class Dados extends apuestas_1.Apuestas {
     constructor(pdineroDisponible, pdineroApuesta) {
-        super(pdineroDisponible, pdineroApuesta); //herencia de la class Apuesta.
+        super(pdineroDisponible, pdineroApuesta); //se hace un llamado al constructor de la super class Apuesta. Se escriben sin el tipo.
         this.dados = 2;
     }
     setDados(dados) {
@@ -44,40 +44,45 @@ class Dados extends apuestas_1.Apuestas {
     tirarDados() {
         let dado1 = Math.floor(Math.random() * 6) + 1; //math floor redondea el núm hacia abajo
         let dado2 = Math.floor(Math.random() * 6) + 1; //math floor redondea el núm hacia abajo
-        return `El resultado es dado1 ${dado1}, dado 2 ${dado2}`;
+        return `El resultado es dado1 ${dado1}, dado 2 ${dado2}`; //concatenación.
     }
     probabilidadDeGanar() {
         //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N NRO.
         let nroApuesta;
         nroApuesta = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
         colors_1.default.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar al tirar dos dados:  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
-        let probabilidad = Math.floor(Math.random() * 6) + 1;
+        let probabilidad = Math.floor(Math.random() * 6) + 1; // la variable probabilidad, stá equiparada al mét math floor.
         console.log(colors_1.default.red(`La probabilidad de sacar un ${nroApuesta} en ambos dados es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
         return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
     }
     inicioJuego() {
         let nroApuesta;
-        nroApuesta = readlineSync.questionInt(colors_1.default.rainbow("Sera su dia de suerte? Compruebelo!! Cual numero elige?:  "));
-        this.apostar();
-        let dado1 = Math.floor(Math.random() * 6) + 1;
+        nroApuesta = readlineSync.questionInt(colors_1.default.rainbow("Sera su dia de suerte? Compruebelo!! Que numero elige?:  "));
+        this.apostar(); // es otro mét que implementa la interfaz Jugar.
+        let dado1 = Math.floor(Math.random() * 6) + 1; //se crearon los objetos dados. Y en ambos elige un núm al azar.
         let dado2 = Math.floor(Math.random() * 6) + 1;
-        if (dado1 == dado2 && nroApuesta) {
-            console.log(colors_1.default.red(`********Usted eligio al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}**********`), colors_1.default.blue(` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`), colors_1.default.bgMagenta(`usted ha ganado!!--------`), colors_1.default.yellow(`$$$$$$ SALDO DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 5}$${this.pagarPremio()}--------------`));
-            return true;
+        if (dado1 == dado2 && nroApuesta) { // si dado 1 es igual a dado 2 y al núm que ingresa el usuario.
+            console.log(colors_1.default.red(// si acierta imprime un mensaje, diciendo ""
+            `********Usted eligio al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}**********`), colors_1.default.blue(// le confirma al usuario cuál es su núm de apuesta y el monto.
+            ` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`), colors_1.default.bgMagenta(`usted ha ganado!!--------`), colors_1.default.yellow(// le informa al usuario, cuáles fueron los resultados al tirar ambos dados. Y como esta se cumple, le dice "ha ganado".
+            `$$$$$$ SALDO DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 5 //le da a conocer el dinero que posee.
+            }$${this.pagarPremio()}--------------`)); // fin console.log
+            return true; // retorna verdadero.
         }
-        else {
-            console.log(colors_1.default.yellow(`*********Usted eligió  al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}*********`), colors_1.default.red(`--------EL PAR DE DADOS GANADOR ES: ${dado1} y ${dado2}:`), colors_1.default.bgRed(`usted ha perdido!!---------`), ` $$$$$ SALDO DISPONIBLE: ${this.dineroDisponible}$`);
+        else { // sino se da la condición.
+            console.log(colors_1.default.yellow(`*********Usted eligio  al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}*********`), colors_1.default.red(`--------EL PAR DE DADOS GANADOR ES: ${dado1} y ${dado2}:`), colors_1.default.bgRed(`usted ha perdido!!---------`), ` $$$$$ SALDO DISPONIBLE: ${this.dineroDisponible}$`);
             let seguirAbandonar; //le da al usuario la posibilidad de elegir si sigue o no apostando
-            seguirAbandonar = readlineSync.question(colors_1.default.blue(`_________________________
+            seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
+      _________________________
       ¿ DESEA SEGUIR APOSTANDO ?
            Responda S/N :  `));
             if (seguirAbandonar == "S") { //si elije si,  vuelve al inicio del metodo inicioJuego()
                 this.inicioJuego();
             }
             else {
-                this.elegirSala(); //si elije que no ejecuta el metodo elegir sala
+                this.elegirSala(); //si elije no, ejecuta el método elegir sala.
             }
-            return false;
+            return false; // si la conddición no se cumple, retorna falso.
         }
     }
     pagarPremio() {
@@ -85,7 +90,8 @@ class Dados extends apuestas_1.Apuestas {
             console.log(colors_1.default.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
         }
         let seguirAbandonar; //luego le pregunta si quiere seguir apostando
-        seguirAbandonar = readlineSync.question(colors_1.default.blue(`_________________________
+        seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
+     _________________________
      ¿ DESEA SEGUIR APOSTANDO ?
            Responda S/N :  `));
         if (seguirAbandonar == "S") { //si elige si, lo retorna al inicio del juego
@@ -108,7 +114,7 @@ class Dados extends apuestas_1.Apuestas {
             }
             console.log(colors_1.default.red(`SE LE RESTAN ${this.dineroApuesta}`)); //muestra el monto de la apuesta
             console.log(colors_1.default.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`)); //muestra por consola el dinero disponible
-        } while (apuestaLocal <= 0); //mientras que
+        } while (apuestaLocal < 0); //mientras que
     }
 }
 exports.Dados = Dados;
