@@ -15,8 +15,10 @@ let dados01:Dados=new Dados(10000);
 let casino01:Casino = new Casino("Casino Royal",3,Tragamonedas01,dados01,Ruleta01);//nueva instancia de casino//nuevo casino
 let juegos: Apuestas[]=[tragamPiedras,Ruleta01,dados01]
 
-console.log(dados01.elegirSala());
-console.log(dados01.probabilidadDeGanar());
+console.log (Ruleta01.elegirSala())
+console.log (Ruleta01.probabilidadDeGanar())
+// console.log(dados01.elegirSala());          
+// console.log(dados01.probabilidadDeGanar());
 
 //function elegirJuego(){
 //        let juegos: Apuestas[]=[tragamPiedras,tragamFrutal,Ruleta01,dados01];
