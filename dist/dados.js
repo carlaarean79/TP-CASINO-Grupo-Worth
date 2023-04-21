@@ -52,7 +52,7 @@ class Dados extends apuestas_1.Apuestas {
         nroApuesta = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
         colors_1.default.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar al tirar dos dados:  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
         let probabilidad = Math.floor(Math.random() * 6) + 1; // la variable probabilidad, stá equiparada al mét math floor.
-        console.log(colors_1.default.red(`La probabilidad de sacar un ${nroApuesta} en ambos dados es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
+        console.log(colors_1.default.red(`La probabilidad de sacar un ${nroApuesta} en ambos dados es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36) + 5} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
         return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
     }
     inicioJuego() {
@@ -67,7 +67,6 @@ class Dados extends apuestas_1.Apuestas {
             ` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`), colors_1.default.bgMagenta(`usted ha ganado!!--------`), colors_1.default.yellow(// le informa al usuario, cuáles fueron los resultados al tirar ambos dados. Y como esta se cumple, le dice "ha ganado".
             `$$$$$$ SALDO DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 5 //le da a conocer el dinero que posee.
             }--------------`)); // fin console.log
-            this.pagarPremio();
             return true; // retorna verdadero.
         }
         else { // sino se da la condición.
@@ -80,28 +79,29 @@ class Dados extends apuestas_1.Apuestas {
             if (seguirAbandonar == "S") { //si elije si,  vuelve al inicio del metodo inicioJuego()
                 this.inicioJuego();
             }
-            else {
-                this.elegirSala(); //si elije no, ejecuta el método elegir sala.
+            else if (seguirAbandonar === "N") {
+                console.log(`Gracias por jugar con nosotros`);
             }
             return false; // si la conddición no se cumple, retorna falso.
         }
     }
-    pagarPremio() {
-        if (this.inicioJuego() === true) { //si el resultado final de incioJuego es true
-            console.log(colors_1.default.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
-        }
-        let seguirAbandonar; //luego le pregunta si quiere seguir apostando
-        seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
-     _________________________
-     ¿ DESEA SEGUIR APOSTANDO ?
-           Responda S/N :  `));
-        if (seguirAbandonar == "S") { //si elige si, lo retorna al inicio del juego
-            this.inicioJuego();
-        }
-        else {
-            this.elegirSala(); //sino le da la opcion de elegir sala
-        }
-    }
+    /*  public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
+       if (this.inicioJuego() === true) {  //si el resultado final de incioJuego es true
+         console.log(colors.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
+       }
+       let seguirAbandonar: string; //luego le pregunta si quiere seguir apostando
+       seguirAbandonar = readlineSync.question(colors.blue(
+        `Recuerde que jugar en exceso es signo de posible adiccion
+        _________________________
+        ¿ DESEA SEGUIR APOSTANDO ?
+              Responda S/N :  ` ));
+       if (seguirAbandonar == "S") {//si elige si, lo retorna al inicio del juego
+         this.inicioJuego();
+       } else {
+         this.elegirSala(); //sino le da la opcion de elegir sala
+       }
+       
+     } */
     apostar() {
         let apuestaLocal; //variable que almacenara la apuesta ingresada por el usuario
         do { //hacer

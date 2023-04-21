@@ -17,7 +17,7 @@ import colors from 'colors';
          colors.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar :  "
         )); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
     
-        let probabilidad: number = Math.floor(Math.random() * 10)+1;
+        let probabilidad: number = Math.floor(Math.random() * 5)+1;
     console.log(colors.red(`La probabilidad de sacar un ${nroApuesta} es de`),
           colors.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36)+1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
         return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
@@ -46,7 +46,7 @@ import colors from 'colors';
         colors.blue(
           `******El número favorecido es ${aux} usted ha ganado $ ${this.dineroApuesta * 10 } *******`),colors.yellow(
             `---------------------TOTAL DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 10
-        }${this.pagarPremio()}---------------------`));//ejecuta el metodo pagar premio
+        }---------------------`));
           return true;
         } else {//si pierde descuenta del dinero disponible lo apostado
           console.log(colors.cyan(`
@@ -65,15 +65,16 @@ import colors from 'colors';
                                         Responda S/N :  `));
           if (seguirAbandonar == "S") {//si elije que si vuelve al inicio del metodo inicioJuego()
             this.inicioJuego();
-          } else {
-            this.elegirSala();//si elije que no ejecuta el metodo elegir sala
+          } else if (seguirAbandonar === "N") {
+            console.log(`Gracias por jugar con nosotros`);
+
           }
           return false;
         }
       }
 
       //  XXX
-      public pagarPremio():void{//este metodo esta realacionado con el metodo inicioJuego
+      /* public pagarPremio():void{//este metodo esta realacionado con el metodo inicioJuego
         if (this.inicioJuego() === true) {//si el resultado final de incioJuego es true
           console.log(colors.bold(`Total a cobrar ${this.dineroApuesta * 10}`));//el jugador cobra su ganancia
         }
@@ -91,7 +92,7 @@ import colors from 'colors';
           this.elegirSala();//sino le da la opcion de elegir sala
             }
       }
-
+ */
       //  XXXXX
 
       public apostar():void {

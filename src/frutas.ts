@@ -20,7 +20,7 @@ public getPozoAcumulado ():number {
 public inicioJuego():boolean {
     console.log(colors.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
     this.apostar();
-    console.log(`***tulin tulin---tulin tulin---***`);
+    console.log(`Procesando...***tulin tulin---tulin tulin---***`);
         let lineas1 = ["manzana","banana","naranja","pera"]
         let aleatorio = lineas1[Math.floor(Math.random()*lineas1.length)]
         let lineas2 = ["manzana","banana","naranja","pera"]
@@ -61,14 +61,14 @@ public inicioJuego():boolean {
           if (seguirAbandonar == "S") {//si elije si,  vuelve al inicio del metodo inicioJuego()
             this.dineroDisponible = this.dineroDisponible;
             this.inicioJuego();
-          } else {
-            this.elegirSala(); //si elije no, ejecuta el método elegir sala.
+          } else if (seguirAbandonar === "N") {
+            console.log(`Gracias por jugar con nosotros`);
           }
           return false;     
         }
 
         
-        public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
+       /*  public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
             if (this.inicioJuego() === true) {  //si el resultado final de incioJuego es true
               console.log(colors.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
             }
@@ -79,18 +79,18 @@ public inicioJuego():boolean {
                    Responda S/N :  ` ));
             if (seguirAbandonar == "S") {//si elige si, lo retorna al inicio del juego
               this.inicioJuego();
-            } else {
-              this.elegirSala(); //sino le da la opcion de elegir sala
+            } else if(seguirAbandonar === "N") {
+           console.log(  `Gracias por jugar con nosotros`)
             } 
-          }
+          } */
     public probabilidadDeGanar(){
            //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas.
     let cantLineas;
     cantLineas = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
-     colors.bgGreen("Ingrese que cantidad de lineas quiere apostar y vea cuales son sus probabilidades de acertar:  "
+     colors.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 1 y 4 y vea cuales son sus probabilidades de acertar:  "
     )); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
       let probabilidad: number = Math.floor(Math.random() * 4)+1;//me devuelve un número aleatorio entre 1 y 4 
-console.log(colors.red(`La probabilidad de acertar ${cantLineas} es de`),
+console.log(colors.red(`La probabilidad de acertar ${cantLineas} lineas es de`),
       colors.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16)+1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
     return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
    

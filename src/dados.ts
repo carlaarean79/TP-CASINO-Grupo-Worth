@@ -30,7 +30,7 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
 
     let probabilidad: number = Math.floor(Math.random() * 6)+1; // la variable probabilidad, stá equiparada al mét math floor.
     console.log(colors.red(`La probabilidad de sacar un ${nroApuesta} en ambos dados es de`),
-    colors.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36)+1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
+    colors.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36)+5} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
     return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
   }
     public inicioJuego(): boolean {// es otro mét que implementa la interfaz Jugar.
@@ -49,7 +49,6 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
           }--------------`
         )
       );// fin console.log
-      this.pagarPremio()
       return true;// retorna verdadero.
     } else { // sino se da la condición.
       console.log(colors.yellow(
@@ -66,13 +65,14 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
            Responda S/N :  ` ));
       if (seguirAbandonar == "S") {//si elije si,  vuelve al inicio del metodo inicioJuego()
         this.inicioJuego();
-      } else {
-        this.elegirSala(); //si elije no, ejecuta el método elegir sala.
+      }else if (seguirAbandonar === "N") {
+        console.log(`Gracias por jugar con nosotros`);
+    
       }
       return false; // si la conddición no se cumple, retorna falso.
     }
   }
-  public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
+ /*  public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
     if (this.inicioJuego() === true) {  //si el resultado final de incioJuego es true
       console.log(colors.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
     }
@@ -88,7 +88,7 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
       this.elegirSala(); //sino le da la opcion de elegir sala
     }
     
-  }
+  } */
   public apostar(): void {
     let apuestaLocal: number; //variable que almacenara la apuesta ingresada por el usuario
     do { //hacer

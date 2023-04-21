@@ -1,6 +1,6 @@
 export interface Jugar{
     inicioJuego():boolean;
-    pagarPremio():void;
+   /*  pagarPremio():void; */
     probabilidadDeGanar():void;
     apostar():void;
 }

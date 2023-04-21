@@ -44,7 +44,7 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
     inicioJuego() {
         console.log(colors_1.default.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
         this.apostar();
-        console.log(`***tulin tulin---tulin tulin---***`);
+        console.log(`Procesando ....***tulin tulin---tulin tulin---***`);
         let lineas1 = ["Diamante", "Gema", "Rubi", "Amatista"];
         let aleatorio = lineas1[Math.floor(Math.random() * lineas1.length)];
         let lineas2 = ["Diamante", "Gema", "Rubi", "Amatista"];
@@ -59,10 +59,10 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
             (aleatorio2 === aleatorio3 && aleatorio2 !== aleatorio && aleatorio2 !== aleatorio4) ||
             (aleatorio2 === aleatorio4 && aleatorio2 !== aleatorio && aleatorio2 !== aleatorio3) ||
             (aleatorio3 === aleatorio4 && aleatorio3 !== aleatorio && aleatorio3 !== aleatorio2)) {
-            console.log(colors_1.default.yellow(` Acierto de 2 lineas. Usted gana $ ${this.dineroApuesta + 2000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible + this.dineroApuesta + 2000}`));
+            console.log(colors_1.default.yellow(` Acierto de 2 lineas. Usted gana $ ${this.dineroApuesta + 2000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible = this.dineroDisponible + this.dineroApuesta + 2000}`));
         }
         else if ((aleatorio === aleatorio2) && (aleatorio2 === aleatorio3) && (aleatorio3 === aleatorio4)) {
-            console.log(colors_1.default.bgBlue(`Acierto de 3 lineas. Usted gana $ ${this.dineroApuesta + 5000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible + this.dineroApuesta + 5000}`));
+            console.log(colors_1.default.bgBlue(`Acierto de 3 lineas. Usted gana $ ${this.dineroApuesta + 5000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible = this.dineroDisponible + this.dineroApuesta + 5000}`));
             console.log(`Dinero disponible ${this.dineroDisponible++}`);
         }
         else if (aleatorio === aleatorio2 && aleatorio === aleatorio3 && aleatorio === aleatorio4) {
@@ -80,33 +80,34 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
         if (seguirAbandonar == "S") { //si elije si,  vuelve al inicio del metodo inicioJuego()
             this.inicioJuego();
         }
-        else {
-            this.elegirSala(); //si elije no, ejecuta el método elegir sala.
+        else if (seguirAbandonar === "N") {
+            console.log(`Gracias por jugar con nosotros`);
         }
         return false;
     }
-    pagarPremio() {
-        if (this.inicioJuego() === true) { //si el resultado final de incioJuego es true
-            console.log(colors_1.default.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
-        }
-        let seguirAbandonar; //luego le pregunta si quiere seguir apostando
-        seguirAbandonar = readlineSync.question(colors_1.default.blue(`_________________________
-             ¿ DESEA SEGUIR APOSTANDO ?
-                   Responda S/N :  `));
-        if (seguirAbandonar == "S") { //si elige si, lo retorna al inicio del juego
-            this.inicioJuego();
-        }
-        else {
-            this.elegirSala(); //sino le da la opcion de elegir sala
-        }
-    }
+    /*  public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
+         if (this.inicioJuego() === true) {  //si el resultado final de incioJuego es true
+           console.log(colors.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
+         }
+         let seguirAbandonar: string; //luego le pregunta si quiere seguir apostando
+         seguirAbandonar = readlineSync.question(colors.blue(
+          `_________________________
+          ¿ DESEA SEGUIR APOSTANDO ?
+                Responda S/N :  ` ));
+         if (seguirAbandonar == "S") {//si elige si, lo retorna al inicio del juego
+           this.inicioJuego();
+         } else if (seguirAbandonar === "N") {
+           console.log(`Gracias por jugar con nosotros`);
+
+         }
+       } */
     probabilidadDeGanar() {
         //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas.
         let cantLineas;
         cantLineas = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
-        colors_1.default.bgGreen("Ingrese que cantidad de lineas quiere apostar y vea cuales son sus probabilidades de acertar:  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
+        colors_1.default.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 1 y 4 y vea cuales son sus probabilidades de acertar:  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
         let probabilidad = Math.floor(Math.random() * 4) + 1; //me devuelve un número aleatorio entre 1 y 4 
-        console.log(colors_1.default.red(`La probabilidad de acertar ${cantLineas} es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
+        console.log(colors_1.default.red(`La probabilidad de acertar ${cantLineas} lineas es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
         return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
     }
     apostar() {

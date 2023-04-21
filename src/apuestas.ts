@@ -23,7 +23,7 @@ export class Apuestas {  // Comiezo de la clase Apuesta //superclase, padre
         return this.dineroDisponible;
      }
      public elegirSala(){//menú de opciones de juego
-        let juegos = [" Tragamonedas Piedras Preciosas"," Tragamonedas Frutal"," Ruleta"," Dados"];//crea un arreglo con las opciones de juego
+        let juegos = [" Tragamonedas "," Ruleta"," Dados"];//crea un arreglo con las opciones de juego
         let sala = readlineSync.keyInSelect(juegos, "Elija una opcion");//keyInSelect es un metodo de la libreria readlinesync
         console.log(                                                    //deja que el usuario elija un elemento de la lista
           `El juego elegido es ${juegos[sala]}`//muestra el juego elegido

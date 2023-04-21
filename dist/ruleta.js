@@ -40,7 +40,7 @@ class Ruleta extends apuestas_1.Apuestas {
         let nroApuesta;
         nroApuesta = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
         colors_1.default.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar :  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
-        let probabilidad = Math.floor(Math.random() * 10) + 1;
+        let probabilidad = Math.floor(Math.random() * 5) + 1;
         console.log(colors_1.default.red(`La probabilidad de sacar un ${nroApuesta} es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
         return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
     }
@@ -61,7 +61,7 @@ class Ruleta extends apuestas_1.Apuestas {
             console.log(colors_1.default.red(`|=====================================================================|
           Su apuesta es al  ${numeroApuesta},${color}
           con un valor de $ ${this.dineroApuesta}
-        |=====================================================================|`), colors_1.default.blue(`******El número favorecido es ${aux} usted ha ganado $ ${this.dineroApuesta * 10} *******`), colors_1.default.yellow(`---------------------TOTAL DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 10}${this.pagarPremio()}---------------------`)); //ejecuta el metodo pagar premio
+        |=====================================================================|`), colors_1.default.blue(`******El número favorecido es ${aux} usted ha ganado $ ${this.dineroApuesta * 10} *******`), colors_1.default.yellow(`---------------------TOTAL DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 10}---------------------`));
             return true;
         }
         else { //si pierde descuenta del dinero disponible lo apostado
@@ -77,30 +77,32 @@ class Ruleta extends apuestas_1.Apuestas {
             if (seguirAbandonar == "S") { //si elije que si vuelve al inicio del metodo inicioJuego()
                 this.inicioJuego();
             }
-            else {
-                this.elegirSala(); //si elije que no ejecuta el metodo elegir sala
+            else if (seguirAbandonar === "N") {
+                console.log(`Gracias por jugar con nosotros`);
             }
             return false;
         }
     }
     //  XXX
-    pagarPremio() {
-        if (this.inicioJuego() === true) { //si el resultado final de incioJuego es true
-            console.log(colors_1.default.bold(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
-        }
-        let seguirAbandonar; //luego le pregunta si quiere seguir apostando
-        seguirAbandonar = readlineSync.question(colors_1.default.zalgo(` El juego excesivo es perjudicial para la salud
-          _________________________
-          ¿ DESEA SEGUIR APOSTANDO ?
-          ---------------------------
-            Responda S/N :  `));
-        if (seguirAbandonar == "S") { //si elige si, lo retorna al inicio del juego
-            this.inicioJuego();
-        }
-        else {
-            this.elegirSala(); //sino le da la opcion de elegir sala
-        }
+    /* public pagarPremio():void{//este metodo esta realacionado con el metodo inicioJuego
+      if (this.inicioJuego() === true) {//si el resultado final de incioJuego es true
+        console.log(colors.bold(`Total a cobrar ${this.dineroApuesta * 10}`));//el jugador cobra su ganancia
+      }
+      let seguirAbandonar: string;//luego le pregunta si quiere seguir apostando
+      seguirAbandonar = readlineSync.question(colors.zalgo(
+ ` El juego excesivo es perjudicial para la salud
+        _________________________
+        ¿ DESEA SEGUIR APOSTANDO ?
+        ---------------------------
+          Responda S/N :  `)
+      );
+      if (seguirAbandonar == "S") {//si elige si, lo retorna al inicio del juego
+        this.inicioJuego()
+      }else{
+        this.elegirSala();//sino le da la opcion de elegir sala
+          }
     }
+*/
     //  XXXXX
     apostar() {
         let apuestaLocal; //variable que almacenara la apuesta ingresada por el usuario
