@@ -3,12 +3,10 @@ import * as readlineSync from 'readline-sync';
 
 export class Tragamonedas extends Apuestas{ //sub clase
     protected salaNro:number; //se llaman miembros datos/variables internas o atributos (caracteristicas del //objeto)
- /*    protected pozoAcumulado:number; */
-    public constructor (psalaNro:number,/* pPozoAcumulado:number, */pdineroDisponible:number, pdineroApuesta?:number) { //se inicializan las variables internas y se le asignan un parametro a cada una y tambien se agregan los parametros del constructor de la super clase
+    public constructor (psalaNro:number,pdineroDisponible:number, pdineroApuesta?:number) { //se inicializan las variables internas y se le asignan un parametro a cada una y tambien se agregan los parametros del constructor de la super clase
     super(pdineroDisponible, pdineroApuesta) //se hace llamada al constructor de la super clase apuesta
         this.salaNro = psalaNro; //se coloca parametros sin el tipo
         
-        /* this.pozoAcumulado = pPozoAcumulado; */
     } //fin constructor
 
 public setSalaNro (pSalaNro:number):void {
@@ -19,14 +17,6 @@ public getSalaNro ():number {
     return this.salaNro;
 }
 
-/* public setPozoAcumulado (pozoAcumulado:number):void {
-    this.pozoAcumulado = pozoAcumulado;
-}
-
-public getPozoAcumulado ():number {
-    return this.pozoAcumulado;
-}
- */
 public elegirTema () {
         let temas = [" Tragamonedas Piedras Preciosas"," Tragamonedas Frutal"];//crea un arreglo con las opciones de juego
         let sala = readlineSync.keyInSelect(temas, "Elija un tema");//keyInSelect es un metodo de la libreria readlinesync

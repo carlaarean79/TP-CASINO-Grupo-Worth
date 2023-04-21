@@ -8,13 +8,15 @@ const piedrasPreciosas_1 = require("./piedrasPreciosas");
 const frutas_1 = require("./frutas");
 let Tragamonedas01 = new Tragamonedas_1.Tragamonedas(1, 10000);
 let tragamPiedras = new piedrasPreciosas_1.PiedrasPreciosas(1, 40000000, 5000);
-let tragamFrutal = new frutas_1.Frutas("d", "d", 400, 500);
+let tragamFrutal = new frutas_1.Frutas(2, 1000000, 5000);
 let Ruleta01 = new ruleta_1.Ruleta(5000);
 let dados01 = new dados_1.Dados(10000);
 let casino01 = new casino_1.Casino("Casino Royal", 3, Tragamonedas01, dados01, Ruleta01); //nueva instancia de casino//nuevo casino
 let juegos = [tragamPiedras, Ruleta01, dados01];
-console.log(Ruleta01.elegirSala());
-console.log(Ruleta01.probabilidadDeGanar());
+console.log(tragamFrutal.elegirSala());
+console.log(tragamFrutal.probabilidadDeGanar());
+//console.log (Ruleta01.elegirSala())
+//console.log (Ruleta01.probabilidadDeGanar())
 // console.log(dados01.elegirSala());          
 // console.log(dados01.probabilidadDeGanar());
 //function elegirJuego(){

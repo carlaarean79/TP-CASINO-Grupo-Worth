@@ -9,14 +9,18 @@ import { Frutas } from './frutas';
 
 let Tragamonedas01:Tragamonedas= new Tragamonedas(1, 10000);
 let tragamPiedras:PiedrasPreciosas=new PiedrasPreciosas(1,40000000,5000);
-let tragamFrutal:Frutas=new Frutas("d","d",400,500)
+let tragamFrutal:Frutas=new Frutas(2,1000000,5000)
 let Ruleta01:Ruleta=new Ruleta(5000);
 let dados01:Dados=new Dados(10000);
 let casino01:Casino = new Casino("Casino Royal",3,Tragamonedas01,dados01,Ruleta01);//nueva instancia de casino//nuevo casino
 let juegos: Apuestas[]=[tragamPiedras,Ruleta01,dados01]
 
-console.log (Ruleta01.elegirSala())
-console.log (Ruleta01.probabilidadDeGanar())
+console.log(tragamFrutal.elegirSala());
+console.log(tragamFrutal.probabilidadDeGanar());
+
+
+//console.log (Ruleta01.elegirSala())
+//console.log (Ruleta01.probabilidadDeGanar())
 // console.log(dados01.elegirSala());          
 // console.log(dados01.probabilidadDeGanar());
 

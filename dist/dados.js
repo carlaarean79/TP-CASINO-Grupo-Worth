@@ -66,7 +66,8 @@ class Dados extends apuestas_1.Apuestas {
             `********Usted eligio al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}**********`), colors_1.default.blue(// le confirma al usuario cuál es su núm de apuesta y el monto.
             ` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`), colors_1.default.bgMagenta(`usted ha ganado!!--------`), colors_1.default.yellow(// le informa al usuario, cuáles fueron los resultados al tirar ambos dados. Y como esta se cumple, le dice "ha ganado".
             `$$$$$$ SALDO DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 5 //le da a conocer el dinero que posee.
-            }$${this.pagarPremio()}--------------`)); // fin console.log
+            }--------------`)); // fin console.log
+            this.pagarPremio();
             return true; // retorna verdadero.
         }
         else { // sino se da la condición.
@@ -109,8 +110,8 @@ class Dados extends apuestas_1.Apuestas {
                 this.dineroDisponible = this.dineroDisponible - apuestaLocal; //le resta a la variable dineroD lo que el usario ingreso
                 this.dineroApuesta = apuestaLocal; //almacena en la variable dineroA, el resto y lo toma como nuevo valor
             }
-            else {
-                console.log(colors_1.default.red("No se puede apostar en negativo")); //si el usuario ingresa num negat
+            else if (apuestaLocal >= 0) {
+                console.log(colors_1.default.red("Ingrese una apuesta valida")); //si el usuario ingresa num negat
             }
             console.log(colors_1.default.red(`SE LE RESTAN ${this.dineroApuesta}`)); //muestra el monto de la apuesta
             console.log(colors_1.default.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`)); //muestra por consola el dinero disponible

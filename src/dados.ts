@@ -1,5 +1,5 @@
 import * as readlineSync from 'readline-sync'
-import colors from "colors";
+import colors from 'colors';
 import {Apuestas} from "./apuestas";
 import { Jugar } from './interface';
 export class Dados extends Apuestas implements Jugar {// se crea la clase dados que extiende de la clase apuesta e implementa la interfaz de jugar.
@@ -46,9 +46,10 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
           ` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`),colors.bgMagenta(`usted ha ganado!!--------`),
         colors.yellow(// le informa al usuario, cuáles fueron los resultados al tirar ambos dados. Y como esta se cumple, le dice "ha ganado".
           `$$$$$$ SALDO DISPONIBLE: ${this.dineroDisponible + this.dineroApuesta * 5 //le da a conocer el dinero que posee.
-          }$${this.pagarPremio()}--------------`
+          }--------------`
         )
       );// fin console.log
+      this.pagarPremio()
       return true;// retorna verdadero.
     } else { // sino se da la condición.
       console.log(colors.yellow(
@@ -95,8 +96,9 @@ public tirarDados() {// este método permite elegir un número aleatorio entre c
       if (apuestaLocal > 0) {//condicion que evalua el monto ingresado sea mayor a 0
         this.dineroDisponible = this.dineroDisponible - apuestaLocal; //le resta a la variable dineroD lo que el usario ingreso
         this.dineroApuesta = apuestaLocal; //almacena en la variable dineroA, el resto y lo toma como nuevo valor
-      } else {
-        console.log(colors.red("No se puede apostar en negativo")); //si el usuario ingresa num negat
+      } else if (apuestaLocal >= 0) {
+
+        console.log(colors.red("Ingrese una apuesta valida")); //si el usuario ingresa num negat
       }
       console.log(colors.red(`SE LE RESTAN ${this.dineroApuesta}`)); //muestra el monto de la apuesta
       console.log(colors.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`)); //muestra por consola el dinero disponible

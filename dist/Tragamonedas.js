@@ -27,11 +27,9 @@ exports.Tragamonedas = void 0;
 const apuestas_1 = require("./apuestas");
 const readlineSync = __importStar(require("readline-sync"));
 class Tragamonedas extends apuestas_1.Apuestas {
-    /*    protected pozoAcumulado:number; */
-    constructor(psalaNro, /* pPozoAcumulado:number, */ pdineroDisponible, pdineroApuesta) {
+    constructor(psalaNro, pdineroDisponible, pdineroApuesta) {
         super(pdineroDisponible, pdineroApuesta); //se hace llamada al constructor de la super clase apuesta
         this.salaNro = psalaNro; //se coloca parametros sin el tipo
-        /* this.pozoAcumulado = pPozoAcumulado; */
     } //fin constructor
     setSalaNro(pSalaNro) {
         this.salaNro = pSalaNro;
@@ -39,14 +37,6 @@ class Tragamonedas extends apuestas_1.Apuestas {
     getSalaNro() {
         return this.salaNro;
     }
-    /* public setPozoAcumulado (pozoAcumulado:number):void {
-        this.pozoAcumulado = pozoAcumulado;
-    }
-    
-    public getPozoAcumulado ():number {
-        return this.pozoAcumulado;
-    }
-     */
     elegirTema() {
         let temas = [" Tragamonedas Piedras Preciosas", " Tragamonedas Frutal"]; //crea un arreglo con las opciones de juego
         let sala = readlineSync.keyInSelect(temas, "Elija un tema"); //keyInSelect es un metodo de la libreria readlinesync

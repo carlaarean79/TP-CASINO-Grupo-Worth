@@ -31,36 +31,10 @@ const Tragamonedas_1 = require("./Tragamonedas");
 const colors_1 = __importDefault(require("colors"));
 const readlineSync = __importStar(require("readline-sync"));
 class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
-    constructor(/* linea1:number[],linea2:number[],linea3:number[], */ psalaNro, pozoAcumulado, pdineroDisponible, pdineroApuesta) {
-        super(psalaNro, /* pPozoAcumulado */ pdineroDisponible, pdineroApuesta); //y del padre del padre, y en la super clase tambien
-        /*  this.linea1 = [3];
-         this.linea2 = [3];
-         this.linea3 = [3]; */
+    constructor(psalaNro, pozoAcumulado, pdineroDisponible, pdineroApuesta) {
+        super(psalaNro, pdineroDisponible, pdineroApuesta); //y del padre del padre, y en la super clase tambien
         this.pozoAcumulado = pozoAcumulado;
     } // fin constructor  
-    /* public setLinea1 (linea1:number[]):void {
-        this.linea1 = linea1
-    }
-    
-    public getLinea1 ():number[] {
-        return this.linea1;
-    }
-    
-    public setLinea2 (linea2:number[]):void {
-        this.linea2 = linea2
-    }
-    
-    public getLinea2 ():number[] {
-        return this.linea2;
-    }
-    
-    public setLinea3 (linea3:number[]):void {
-        this.linea3 = linea3
-    }
-    
-    public getLinea3 ():number[] {
-        return this.linea3;
-    } */
     setPozoAcumulado(pozoAcumulado) {
         this.pozoAcumulado = pozoAcumulado;
     }
@@ -87,18 +61,29 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
             (aleatorio3 === aleatorio4 && aleatorio3 !== aleatorio && aleatorio3 !== aleatorio2)) {
             console.log(colors_1.default.yellow(` Acierto de 2 lineas. Usted gana $ ${this.dineroApuesta + 2000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible + this.dineroApuesta + 2000}`));
         }
-        if ((aleatorio === aleatorio2) && (aleatorio2 === aleatorio3) && (aleatorio3 === aleatorio4)) {
+        else if ((aleatorio === aleatorio2) && (aleatorio2 === aleatorio3) && (aleatorio3 === aleatorio4)) {
             console.log(colors_1.default.bgBlue(`Acierto de 3 lineas. Usted gana $ ${this.dineroApuesta + 5000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible + this.dineroApuesta + 5000}`));
             console.log(`Dinero disponible ${this.dineroDisponible++}`);
         }
-        if (aleatorio === aleatorio2 && aleatorio === aleatorio3 && aleatorio === aleatorio4) {
+        else if (aleatorio === aleatorio2 && aleatorio === aleatorio3 && aleatorio === aleatorio4) {
             console.log(colors_1.default.bgCyan(`HA ACERTADO LAS 4 LINEAS!!!!! USTED GANA ${this.pozoAcumulado + this.dineroApuesta} `));
             return true;
         }
         else {
             console.log(colors_1.default.bgRed(`Sin aciertos!! Usted pierde ${this.dineroApuesta--} Desea apostar nuavemente?`));
-            return false;
         }
+        let seguirAbandonar; //le da al usuario la posibilidad de elegir si sigue o no apostando
+        seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
+          _________________________
+          ¿ DESEA SEGUIR APOSTANDO ?
+               Responda S/N :  `));
+        if (seguirAbandonar == "S") { //si elije si,  vuelve al inicio del metodo inicioJuego()
+            this.inicioJuego();
+        }
+        else {
+            this.elegirSala(); //si elije no, ejecuta el método elegir sala.
+        }
+        return false;
     }
     pagarPremio() {
         if (this.inicioJuego() === true) { //si el resultado final de incioJuego es true
@@ -138,7 +123,6 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
             console.log(colors_1.default.red(`SE LE RESTAN ${this.dineroApuesta}`)); //muestra el monto de la apuesta
             console.log(colors_1.default.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`)); //muestra por consola el dinero disponible
         } while (apuestaLocal <= 0); //mientras que
-        return;
     }
 } // fin de la sub clase
 exports.PiedrasPreciosas = PiedrasPreciosas;
