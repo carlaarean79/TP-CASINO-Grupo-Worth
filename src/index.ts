@@ -15,17 +15,17 @@ let dados01:Dados=new Dados(10000);
 let juegos: Apuestas= new Apuestas(0);
 let casino01:Casino = new Casino("Casino Royal",3,juegos,Tragamonedas01,dados01,Ruleta01);//nueva instancia de casino//nuevo casino
 
-console.log(casino01.getApuesta().elegirSala(),
+console.log(
+casino01,
+ casino01.getApuesta().elegirSala(), 
 Tragamonedas01.elegirTema(),
+
 tragamFrutal,
 tragamFrutal.probabilidadDeGanar(),
 Tragamonedas01.elegirTema(),
-tragamPiedras,
-tragamPiedras.probabilidadDeGanar(),
 juegos.elegirSala(),
 Ruleta01.probabilidadDeGanar(),
 juegos.elegirSala(),
-dados01.probabilidadDeGanar());
+dados01.probabilidadDeGanar() ); 
 
 
-    

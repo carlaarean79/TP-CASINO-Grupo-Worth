@@ -2,19 +2,18 @@ import * as readlineSync from "readline-sync";
 
 export class Apuestas {  // Comiezo de la clase Apuesta //superclase, padre
 
-    protected dineroApuesta : number; // Declaracion de miembros datos // Variable internas.
-    protected dineroDisponible : number; // Portected :  modificador de acceso con el cual , las clase que lo hereden van a tener acceso a ellos. 
-    public constructor (pdineroDisponible : number, pdineroApuesta ? : number) { // Inicia constructor, pdineroApuesta ? parametro opcional en el ultimo lugar, de otro modo respectar el orden de como se crearon las variables. 
-        this.dineroDisponible = pdineroDisponible; // con this. se transformo las variabels en objetos 
-        pdineroApuesta ? this.dineroApuesta = pdineroApuesta : this.dineroApuesta = 0; // el signo ? es un operador ternario (operador condicional ) y lo que hace es la sintaxis de la condicion IF -- ELSE.
-                                                                                       // si ingresa dineroApuesta me devuelve el valor que ingreso por parametro, y sino me devuelve 0. 
+    protected dineroApuesta : number; 
+    protected dineroDisponible : number;  
+    public constructor (pdineroDisponible : number, pdineroApuesta ? : number) {  
+        this.dineroDisponible = pdineroDisponible;  
+        pdineroApuesta ? this.dineroApuesta = pdineroApuesta : this.dineroApuesta = 0;                                                                                       // si ingresa dineroApuesta me devuelve el valor que ingreso por parametro, y sino me devuelve 0. 
     } // Finaliza constructor.
 
-    public setDineroApuesta(pdineroApuesta : number) : void { // Son los miebros "METODOS o funciones" y estamos habalndo del SET y el GET
-        this.dineroApuesta = pdineroApuesta;                  // El SET permite setear (ingresar o modificar datos ingresadso por el constructro ) los valores del parametro.
-     }
-    public getDienroApuesta() : number {                     // Muestra los valores ingresados o modificados por el SET.
-        return this.dineroApuesta;
+    public setDineroApuesta(pdineroApuesta : number) : void { 
+        this.dineroApuesta = pdineroApuesta;    
+    }              
+    public getDienroApuesta() : number {                  
+              return this.dineroApuesta;
      }
     public setDineroDisponible(pdineroDisponible : number) : void {
         this.dineroDisponible = pdineroDisponible;
@@ -22,12 +21,15 @@ export class Apuestas {  // Comiezo de la clase Apuesta //superclase, padre
      public getDineroDisponible() : number {
         return this.dineroDisponible;
      }
+     //keyInSelect es un metodo de la libreria readlinesync//deja que el usuario elija un elemento de la lista
      public elegirSala(){//menú de opciones de juego
-        let juegos = [" Tragamonedas "," Ruleta"," Dados"];//crea un arreglo con las opciones de juego
-        let sala = readlineSync.keyInSelect(juegos, "Elija una opcion");//keyInSelect es un metodo de la libreria readlinesync
-        console.log(                                                    //deja que el usuario elija un elemento de la lista
-          `El juego elegido es ${juegos[sala]}`//muestra el juego elegido
+        let juegos = [" Tragamonedas "," Ruleta"," Dados"];
+        let sala = readlineSync.keyInSelect(juegos, "Elija una opcion");
+        console.log(                                                    
+          `El juego elegido es ${juegos[sala]}`
         );
-      }      
-
+      }  // este metodo si bien simula ser un menú de opciones, no se pudo modificar para que al elegir
+      //una opción redireccione al juego seleccionado. Por lo tanto la elección es forzada e irá en 
+      //orden cde como se llamaron a los distintos nuevos objetos
+    
 } // fin de la clase Apuesta

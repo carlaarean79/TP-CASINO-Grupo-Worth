@@ -41,8 +41,11 @@ class Frutas extends Tragamonedas_1.Tragamonedas {
     getPozoAcumulado() {
         return this.pozoAcumulado;
     }
+    //método que implementa la interfaz
+    //le da comienzo a los distintos juegos
     inicioJuego() {
         console.log(colors_1.default.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
+        console.log(` Dinero disponible: ${this.dineroDisponible}$`);
         this.apostar();
         console.log(`Procesando...***tulin tulin---tulin tulin---***`);
         let lineas1 = ["manzana", "banana", "naranja", "pera"];
@@ -52,78 +55,69 @@ class Frutas extends Tragamonedas_1.Tragamonedas {
         let lineas3 = ["manzana", "banana", "naranja", "pera"];
         let aleatorio3 = lineas3[Math.floor(Math.random() * lineas3.length)];
         let lineas4 = ["manzana", "banana", "naranja", "pera"];
-        let aleatorio4 = lineas3[Math.floor(Math.random() * lineas4.length)];
+        let aleatorio4 = lineas4[Math.floor(Math.random() * lineas4.length)];
         console.log(colors_1.default.bgMagenta(`Su juego  Lineas -->  ${aleatorio} ----${aleatorio2} ----- ${aleatorio3}----${aleatorio4}`));
         if ((aleatorio === aleatorio3 && aleatorio !== aleatorio2 && aleatorio !== aleatorio4) ||
             (aleatorio === aleatorio4 && aleatorio !== aleatorio2 && aleatorio !== aleatorio3) ||
             (aleatorio2 === aleatorio3 && aleatorio2 !== aleatorio && aleatorio2 !== aleatorio4) ||
             (aleatorio2 === aleatorio4 && aleatorio2 !== aleatorio && aleatorio2 !== aleatorio3) ||
-            (aleatorio3 === aleatorio4 && aleatorio3 !== aleatorio && aleatorio3 !== aleatorio2)) {
+            (aleatorio3 === aleatorio4 && aleatorio3 !== aleatorio && aleatorio3 !== aleatorio2) ||
+            (aleatorio === aleatorio2 && aleatorio !== aleatorio3 && aleatorio !== aleatorio4)) {
             console.log(colors_1.default.yellow(` Acierto de 2 lineas. Usted gana $ ${this.dineroApuesta + 2000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible = this.dineroDisponible + this.dineroApuesta + 2000}`));
         }
-        else if ((aleatorio === aleatorio2) && (aleatorio2 === aleatorio3) && (aleatorio3 === aleatorio4)) {
+        else if ((aleatorio === aleatorio2 && aleatorio === aleatorio3 && aleatorio !== aleatorio4) ||
+            (aleatorio === aleatorio4 && aleatorio === aleatorio2 && aleatorio !== aleatorio3) ||
+            (aleatorio === aleatorio3 && aleatorio === aleatorio4 && aleatorio !== aleatorio2) ||
+            (aleatorio3 === aleatorio && aleatorio3 === aleatorio2 && aleatorio3 !== aleatorio4) ||
+            (aleatorio3 === aleatorio2 && aleatorio3 === aleatorio4 && aleatorio3 !== aleatorio)) {
             console.log(colors_1.default.bgBlue(`Acierto de 3 lineas. Usted gana $ ${this.dineroApuesta + 5000}`), colors_1.default.red(`TOTAL ACUMULADO ${this.dineroDisponible = this.dineroDisponible + this.dineroApuesta + 5000}`));
             console.log(`Dinero disponible ${this.dineroDisponible}`);
         }
         else if (aleatorio === aleatorio2 && aleatorio === aleatorio3 && aleatorio === aleatorio4) {
             console.log(colors_1.default.bgCyan(`HA ACERTADO LAS 4 LINEAS!!!!! USTED GANA ${this.dineroDisponible = this.pozoAcumulado + this.dineroApuesta} `));
-            return true;
         }
         else {
             console.log(colors_1.default.bgRed(`Sin aciertos!! Usted pierde ${this.dineroApuesta} Desea apostar nuavemente?`));
         }
-        let seguirAbandonar; //le da al usuario la posibilidad de elegir si sigue o no apostando
+        let seguirAbandonar;
         seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
           _________________________
           ¿ DESEA SEGUIR APOSTANDO ?
                Responda S/N :  `));
-        if (seguirAbandonar == "S") { //si elije si,  vuelve al inicio del metodo inicioJuego()
+        if (seguirAbandonar == "S") {
             this.dineroDisponible = this.dineroDisponible;
             this.inicioJuego();
         }
         else if (seguirAbandonar === "N") {
             console.log(`Gracias por jugar con nosotros`);
         }
-        return false;
     }
-    /*  public pagarPremio(): void { //este metodo esta realacionado con el metodo inicioJuego
-         if (this.inicioJuego() === true) {  //si el resultado final de incioJuego es true
-           console.log(colors.green(`Total a cobrar ${this.dineroApuesta * 10}`)); //el jugador cobra su ganancia
-         }
-         let seguirAbandonar: string; //luego le pregunta si quiere seguir apostando
-         seguirAbandonar = readlineSync.question(colors.blue(
-          `_________________________
-          ¿ DESEA SEGUIR APOSTANDO ?
-                Responda S/N :  ` ));
-         if (seguirAbandonar == "S") {//si elige si, lo retorna al inicio del juego
-           this.inicioJuego();
-         } else if(seguirAbandonar === "N") {
-        console.log(  `Gracias por jugar con nosotros`)
-         }
-       } */
+    //método que implementa la interfaz
+    //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas.
     probabilidadDeGanar() {
-        //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas.
         let cantLineas;
-        cantLineas = readlineSync.questionInt(//DECLARE UNA VARIABLE A LA CUAL LA INICIE CON QUESTION DE READLINE-SYNC
-        colors_1.default.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 1 y 4 y vea cuales son sus probabilidades de acertar:  ")); //LE PIDE AL USUARIO QUE INGRESE UN NUMERO
-        let probabilidad = Math.floor(Math.random() * 4) + 1; //me devuelve un número aleatorio entre 1 y 4 
-        console.log(colors_1.default.red(`La probabilidad de acertar ${cantLineas} lineas es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16) + 1} *****`)); //ME DEVUELVE EL NUMERO ELEGIDO, EL RANDOM GUARDADO EN LA VARIABLE PROBABILIDAD Y ELIJE OTRO NUMERO AL ALEATORIO ENTRE 1 Y 20.
-        return this.inicioJuego(); //ESTE METODO RETORNA AL METODO iniciojuego POR LO CUAL EL PROGRAMA CONTINUA CON EL
+        cantLineas = readlineSync.questionInt(colors_1.default.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 2 y 4 y vea cuales son sus probabilidades de acertar:  "));
+        let probabilidad = Math.floor(Math.random() * 4) + 1;
+        console.log(colors_1.default.red(`La probabilidad de acertar ${cantLineas} lineas es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16) + 1} *****`));
+        this.inicioJuego();
     }
+    //método que implementa la interfaz
+    //interactúa con la apuesta ingresada y el saldo disponible
+    // con el ciclo do - while primero se evalúa la sentencia y luego la condición.
     apostar() {
-        let apuestaLocal; //variable que almacenara la apuesta ingresada por el usuario
+        let apuestaLocal;
         do { //hacer
-            apuestaLocal = readlineSync.questionInt(colors_1.default.bgBlue("Ingrese su apuesta: ")); //questionInt para que reconozca tipo numero
+            apuestaLocal = readlineSync.questionInt(colors_1.default.bgBlue("Ingrese su apuesta: "));
             if (apuestaLocal > 0) { //condicion que evalua el monto ingresado sea mayor a 0
-                this.dineroDisponible = this.dineroDisponible - apuestaLocal; //le resta a la variable dineroD lo que el usario ingreso
-                this.dineroApuesta = apuestaLocal; //almacena en la variable dineroA, el resto y lo toma como nuevo valor
+                this.dineroDisponible = this.dineroDisponible - apuestaLocal;
+                this.dineroApuesta = apuestaLocal;
             }
             else {
-                console.log(colors_1.default.red("No se puede apostar en negativo")); //si el usuario ingresa num negat
+                console.log(colors_1.default.red("Saldo insuficiente. Por favor, ingrese un monto válido"));
             }
-            console.log(colors_1.default.red(`SE LE RESTAN ${this.dineroApuesta}`)); //muestra el monto de la apuesta
-            console.log(colors_1.default.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`)); //muestra por consola el dinero disponible
-        } while (apuestaLocal <= 0); //mientras que
+            console.log(colors_1.default.red(`SE LE RESTAN ${this.dineroApuesta}`));
+            console.log(colors_1.default.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`));
+        } while (apuestaLocal <= 0); //mientras que//si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
     }
 } // fin de la sub clase
 exports.Frutas = Frutas;
