@@ -14,4 +14,12 @@ let Ruleta01 = new ruleta_1.Ruleta(5000);
 let dados01 = new dados_1.Dados(10000);
 let juegos = new apuestas_1.Apuestas(0);
 let casino01 = new casino_1.Casino("Casino Royal", 3, juegos, Tragamonedas01, dados01, Ruleta01); //nueva instancia de casino//nuevo casino
-console.log(casino01, casino01.getApuesta().elegirSala(), Tragamonedas01.elegirTema(), tragamFrutal, tragamFrutal.probabilidadDeGanar(), Tragamonedas01.elegirTema(), juegos.elegirSala(), Ruleta01.probabilidadDeGanar(), juegos.elegirSala(), dados01.probabilidadDeGanar());
+casino01.getApuesta().elegirSala(),
+    Tragamonedas01.elegirTema(),
+    tragamPiedras.probabilidadDeGanar();
+Tragamonedas01.elegirTema(),
+    tragamFrutal.probabilidadDeGanar(),
+    juegos.elegirSala(),
+    Ruleta01.probabilidadDeGanar(),
+    juegos.elegirSala(),
+    dados01.probabilidadDeGanar();

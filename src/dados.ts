@@ -7,7 +7,7 @@ export class Dados extends Apuestas implements Jugar {// se crea la clase dados 
 private dados:number
 public constructor(pdineroDisponible : number, pdineroApuesta ? : number){
 super(pdineroDisponible,pdineroApuesta);
-this.dados= 2;
+this.dados = 2;
 }
  
 public setDados(dados:number): void{
@@ -16,11 +16,11 @@ public setDados(dados:number): void{
 public getDados():number{
 return this.dados;
 }
-public tirarDados() {
+public tirarDados(){
   let dado1 =  Math.floor(Math.random() * 6)+1;
   let dado2 =  Math.floor(Math.random() * 6)+1;
   return `El resultado es dado1 ${dado1}, dado 2 ${dado2}`
-  
+   
   }
   //método que implementa la interfaz
       //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas
@@ -39,14 +39,14 @@ public tirarDados() {
 //la da comienzo a los distintos juego
     public inicioJuego(): void{
        let nroApuesta: number;
-      console.log(` Dinero disponible: ${this.dineroDisponible}$`  );
+      console.log(` Dinero disponible: ${this.dineroDisponible} $`  );
     nroApuesta = readlineSync.questionInt(colors.rainbow("Sera su dia de suerte? Compruebelo!! Que numero elige?:  "));
     this.apostar();
     let dado1 =  Math.floor(Math.random() * 6)+1;
     let dado2=  Math.floor(Math.random() * 6)+1;
     if (dado1 == dado2 && nroApuesta) { 
       console.log(colors.red( 
-          `********Usted eligio al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}**********`),
+          `********Usted eligio al  ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}**********`),
         colors.blue(
           ` ---------EL PAR DE DADOS GANADOR ES:  ${dado1} y ${dado2}:`),colors.bgMagenta(`usted ha ganado!!--------`),
         colors.yellow(
@@ -68,7 +68,7 @@ public tirarDados() {
       _________________________
       ¿ DESEA SEGUIR APOSTANDO ?
            Responda S/N :  ` ));
-      if (seguirAbandonar == "S") {
+      if (seguirAbandonar === "S") {
         this.inicioJuego();
       }else if (seguirAbandonar === "N") {
         console.log(`Gracias por jugar con nosotros`);
@@ -87,7 +87,7 @@ public tirarDados() {
       if (apuestaLocal > 0) {
         this.dineroDisponible = this.dineroDisponible - apuestaLocal; 
         this.dineroApuesta = apuestaLocal; 
-      } else if (apuestaLocal >= 0) {
+      } else if (apuestaLocal === 0) {
 
         console.log(colors.red("Saldo insuficiente. Por favor, ingrese un monto válido")); 
       }

@@ -28,7 +28,8 @@ const readlineSync = __importStar(require("readline-sync"));
 class Apuestas {
     constructor(pdineroDisponible, pdineroApuesta) {
         this.dineroDisponible = pdineroDisponible;
-        pdineroApuesta ? this.dineroApuesta = pdineroApuesta : this.dineroApuesta = 0; // si ingresa dineroApuesta me devuelve el valor que ingreso por parametro, y sino me devuelve 0. 
+        pdineroApuesta ? this.dineroApuesta = pdineroApuesta : this.dineroApuesta = 0;
+        // si ingresa dineroApuesta me devuelve el valor que ingreso por parametro, y sino me devuelve 0. 
     } // Finaliza constructor.
     setDineroApuesta(pdineroApuesta) {
         this.dineroApuesta = pdineroApuesta;
@@ -48,5 +49,9 @@ class Apuestas {
         let sala = readlineSync.keyInSelect(juegos, "Elija una opcion");
         console.log(`El juego elegido es ${juegos[sala]}`);
     } // este metodo si bien simula ser un menú de opciones, no se pudo modificar para que al elegir
+    //una opción redireccione al juego seleccionado. Por lo tanto la elección es forzada e irá en 
+    //orden cde como se llamaron a los distintos nuevos objetos
+    probabilidadDeGanar() {
+    }
 } // fin de la clase Apuesta
 exports.Apuestas = Apuestas;

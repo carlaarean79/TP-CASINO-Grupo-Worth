@@ -98,12 +98,14 @@ console.log(colors.red(`La probabilidad de acertar ${cantLineas} lineas es de`),
           if (apuestaLocal > 0) {
             this.dineroDisponible = this.dineroDisponible - apuestaLocal; 
             this.dineroApuesta = apuestaLocal; 
-          } else {
-            console.log(colors.yellow("Saldo insuficiente. Por favor, Ingrese un monto válido")); 
-          }
+          } else if (apuestaLocal === 0) {
+
+            console.log(colors.red("Saldo insuficiente. Por favor, ingrese un monto válido")); 
+          } 
+          
           console.log(colors.red(`SE LE RESTAN ${this.dineroApuesta}`));
           console.log(colors.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`));
-        } while (apuestaLocal <= 0); //mientras que// si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
+        } while (apuestaLocal < 0); //mientras que// si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
       }
 } // fin de la sub clase
 

@@ -5,10 +5,12 @@ import colors from 'colors';
 
 //SE CREO LA CLASE RULETA QUE EXTIENDE DE LA SUPERCLASE APUESTAS E IMPLENTA LA INTERFAZ JUGAR
     export class Ruleta extends Apuestas implements Jugar { 
-      
-      public constructor ( pdineroDisponible : number, pdineroApuesta ? : number ) { 
+          public constructor ( pdineroDisponible : number, pdineroApuesta ? : number ) { 
         super (pdineroDisponible , pdineroApuesta);                                   
       
+      }
+      public girarLaRuleta() {
+        return Math.floor(Math.random() * 36);
       }
 // se implementan los metodos de la interface jugar que ruleta esta obligada a utilizar o respetar por contrato 
       public probabilidadDeGanar() {
@@ -57,7 +59,8 @@ import colors from 'colors';
         ` *********** El número favorecido es ${aux}:`),colors.bgRed(` usted ha perdido.************`
         ),colors.bgGreen(
         `------------------TOTAL DIPONIBLE $  ${this.dineroDisponible}------------------`));
-          let seguirAbandonar: string;
+        } 
+        let seguirAbandonar: string;
           seguirAbandonar = readlineSync.question(colors.blue(
           ` Recuerde que jugar en exceso es signo de posible adiccion
                    ---------------------------
@@ -69,7 +72,7 @@ import colors from 'colors';
             console.log(`Gracias por jugar con nosotros`);
 
           }
-        }
+        
       }
 
      

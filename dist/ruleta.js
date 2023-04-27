@@ -35,6 +35,9 @@ class Ruleta extends apuestas_1.Apuestas {
     constructor(pdineroDisponible, pdineroApuesta) {
         super(pdineroDisponible, pdineroApuesta);
     }
+    girarLaRuleta() {
+        return Math.floor(Math.random() * 36);
+    }
     // se implementan los metodos de la interface jugar que ruleta esta obligada a utilizar o respetar por contrato 
     probabilidadDeGanar() {
         let nroApuesta;
@@ -68,17 +71,17 @@ class Ruleta extends apuestas_1.Apuestas {
         |======================================================================|
               Su apuesta es al  ${numeroApuesta},${color} con un valor de $ ${this.dineroApuesta}.
         |======================================================================|.`), colors_1.default.bgMagenta(` *********** El número favorecido es ${aux}:`), colors_1.default.bgRed(` usted ha perdido.************`), colors_1.default.bgGreen(`------------------TOTAL DIPONIBLE $  ${this.dineroDisponible}------------------`));
-            let seguirAbandonar;
-            seguirAbandonar = readlineSync.question(colors_1.default.blue(` Recuerde que jugar en exceso es signo de posible adiccion
+        }
+        let seguirAbandonar;
+        seguirAbandonar = readlineSync.question(colors_1.default.blue(` Recuerde que jugar en exceso es signo de posible adiccion
                    ---------------------------
                      DESEA SEGUIR APOSTANDO ?
                          Responda S/N :  `));
-            if (seguirAbandonar == "S") {
-                this.inicioJuego();
-            }
-            else if (seguirAbandonar === "N") {
-                console.log(`Gracias por jugar con nosotros`);
-            }
+        if (seguirAbandonar == "S") {
+            this.inicioJuego();
+        }
+        else if (seguirAbandonar === "N") {
+            console.log(`Gracias por jugar con nosotros`);
         }
     }
     //  Método que implementa la intefaz 
