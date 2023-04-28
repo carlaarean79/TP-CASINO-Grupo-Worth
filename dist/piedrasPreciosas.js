@@ -27,6 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PiedrasPreciosas = void 0;
+const _1 = require(".");
 const Tragamonedas_1 = require("./Tragamonedas");
 const colors_1 = __importDefault(require("colors"));
 const readlineSync = __importStar(require("readline-sync"));
@@ -46,6 +47,7 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
     inicioJuego() {
         console.log(colors_1.default.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
         console.log(` Dinero disponible: ${this.dineroDisponible}$`);
+        console.log(colors_1.default.bgMagenta(`Inicia el juego. Mucha suerte!`));
         this.apostar();
         console.log(`Procesando ....***tulin tulin---tulin tulin---***`);
         let lineas1 = ["Diamante", "Gema", "Rubi", "Amatista"];
@@ -89,6 +91,8 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
             this.inicioJuego();
         }
         else if (seguirAbandonar === "N") {
+            let menu = new _1.Menu();
+            menu.getElegirJuego();
             console.log(`Gracias por jugar con nosotros`);
         }
     }
@@ -96,7 +100,7 @@ class PiedrasPreciosas extends Tragamonedas_1.Tragamonedas {
     //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas.
     probabilidadDeGanar() {
         let cantLineas;
-        cantLineas = readlineSync.questionInt(colors_1.default.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 2 y 4 y vea cuales son sus probabilidades de acertar:  "));
+        cantLineas = readlineSync.questionInt(colors_1.default.bgGreen("Antes de empezar el juego, vea cuales son sus probabilidades de acertar 2,3 o 4 lineas. Ingrese una opción: "));
         let probabilidad = Math.floor(Math.random() * 4) + 1;
         console.log(colors_1.default.red(`La probabilidad de acertar ${cantLineas} lineas es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 16) + 1} *****`));
         this.inicioJuego();

@@ -2,6 +2,7 @@ import * as readlineSync from 'readline-sync'
 import colors from 'colors';
 import {Apuestas} from "./apuestas";
 import { Jugar } from './interface';
+import {Menu} from './index'
 
 export class Dados extends Apuestas implements Jugar {// se crea la clase dados que extiende de la clase apuesta e implementa la interfaz de jugar.
 private dados:number
@@ -24,10 +25,13 @@ public tirarDados(){
   }
   //método que implementa la interfaz
       //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas
+  public getProbabilidadDeGanar():void{
+    return this.probabilidadDeGanar();
+  }
   public probabilidadDeGanar() {
     let nroApuesta: number;
     nroApuesta = readlineSync.questionInt(
-     colors.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar al tirar dos dados:  "
+     colors.bgGreen("Antes de empezar el juego, ingrese un numero y vea cuales son sus probabilidades de ganar al tirar dos dados:  "
     )); 
 
     let probabilidad: number = Math.floor(Math.random() * 6)+1; 
@@ -40,6 +44,7 @@ public tirarDados(){
     public inicioJuego(): void{
        let nroApuesta: number;
       console.log(` Dinero disponible: ${this.dineroDisponible} $`  );
+      console.log(colors.bgMagenta(`Inicia el juego. Mucha suerte!`));
     nroApuesta = readlineSync.questionInt(colors.rainbow("Sera su dia de suerte? Compruebelo!! Que numero elige?:  "));
     this.apostar();
     let dado1 =  Math.floor(Math.random() * 6)+1;
@@ -61,7 +66,8 @@ public tirarDados(){
         colors.red(`--------EL PAR DE DADOS GANADOR ES: ${dado1} y ${dado2
         }:`), colors.bgRed(`usted ha perdido!!---------`),
         ` $$$$$ SALDO DISPONIBLE: ${this.dineroDisponible}$`
-      );
+        );
+      }
       let seguirAbandonar: string; 
       seguirAbandonar = readlineSync.question(colors.blue(
       `Recuerde que jugar en exceso es signo de posible adiccion
@@ -71,11 +77,12 @@ public tirarDados(){
       if (seguirAbandonar === "S") {
         this.inicioJuego();
       }else if (seguirAbandonar === "N") {
+        let menu=new Menu();
+        menu.getElegirJuego();
         console.log(`Gracias por jugar con nosotros`);
     
       }
      
-    }
   }
  //  Método que implementa la intefaz 
 // con el ciclo do - while primero se evalúa la sentencia y luego la condición.

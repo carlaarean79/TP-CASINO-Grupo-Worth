@@ -30,6 +30,7 @@ exports.Dados = void 0;
 const readlineSync = __importStar(require("readline-sync"));
 const colors_1 = __importDefault(require("colors"));
 const apuestas_1 = require("./apuestas");
+const index_1 = require("./index");
 class Dados extends apuestas_1.Apuestas {
     constructor(pdineroDisponible, pdineroApuesta) {
         super(pdineroDisponible, pdineroApuesta);
@@ -48,9 +49,12 @@ class Dados extends apuestas_1.Apuestas {
     }
     //método que implementa la interfaz
     //ESTE METODO DEVUELVE CUAL ES LA PROBABILIDAD DE GANAR APOSTANDO N cant de líneas
+    getProbabilidadDeGanar() {
+        return this.probabilidadDeGanar();
+    }
     probabilidadDeGanar() {
         let nroApuesta;
-        nroApuesta = readlineSync.questionInt(colors_1.default.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar al tirar dos dados:  "));
+        nroApuesta = readlineSync.questionInt(colors_1.default.bgGreen("Antes de empezar el juego, ingrese un numero y vea cuales son sus probabilidades de ganar al tirar dos dados:  "));
         let probabilidad = Math.floor(Math.random() * 6) + 1;
         console.log(colors_1.default.red(`La probabilidad de sacar un ${nroApuesta} en ambos dados es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36) + 5} *****`));
         this.inicioJuego();
@@ -60,6 +64,7 @@ class Dados extends apuestas_1.Apuestas {
     inicioJuego() {
         let nroApuesta;
         console.log(` Dinero disponible: ${this.dineroDisponible} $`);
+        console.log(colors_1.default.bgMagenta(`Inicia el juego. Mucha suerte!`));
         nroApuesta = readlineSync.questionInt(colors_1.default.rainbow("Sera su dia de suerte? Compruebelo!! Que numero elige?:  "));
         this.apostar();
         let dado1 = Math.floor(Math.random() * 6) + 1;
@@ -69,17 +74,19 @@ class Dados extends apuestas_1.Apuestas {
         }
         else {
             console.log(colors_1.default.yellow(`*********Usted eligio  al ${nroApuesta} como par ganador y con una apuesta de $ ${this.dineroApuesta}*********`), colors_1.default.red(`--------EL PAR DE DADOS GANADOR ES: ${dado1} y ${dado2}:`), colors_1.default.bgRed(`usted ha perdido!!---------`), ` $$$$$ SALDO DISPONIBLE: ${this.dineroDisponible}$`);
-            let seguirAbandonar;
-            seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
+        }
+        let seguirAbandonar;
+        seguirAbandonar = readlineSync.question(colors_1.default.blue(`Recuerde que jugar en exceso es signo de posible adiccion
       _________________________
       ¿ DESEA SEGUIR APOSTANDO ?
            Responda S/N :  `));
-            if (seguirAbandonar === "S") {
-                this.inicioJuego();
-            }
-            else if (seguirAbandonar === "N") {
-                console.log(`Gracias por jugar con nosotros`);
-            }
+        if (seguirAbandonar === "S") {
+            this.inicioJuego();
+        }
+        else if (seguirAbandonar === "N") {
+            let menu = new index_1.Menu();
+            menu.getElegirJuego();
+            console.log(`Gracias por jugar con nosotros`);
         }
     }
     //  Método que implementa la intefaz 

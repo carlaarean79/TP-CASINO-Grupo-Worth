@@ -2,6 +2,7 @@ import { Apuestas } from "./apuestas";
 import { Jugar } from "./interface";
 import * as readlineSync from "readline-sync";
 import colors from 'colors';
+import { Menu } from ".";
 
 //SE CREO LA CLASE RULETA QUE EXTIENDE DE LA SUPERCLASE APUESTAS E IMPLENTA LA INTERFAZ JUGAR
     export class Ruleta extends Apuestas implements Jugar { 
@@ -16,7 +17,7 @@ import colors from 'colors';
       public probabilidadDeGanar() {
         let nroApuesta;
         nroApuesta = readlineSync.questionInt(
-         colors.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar :  "
+         colors.bgGreen("Antes de comenzar el juego, ingrese un numero y vea cuales son sus probabilidades de ganar :  "
         )); 
     
         let probabilidad: number = Math.floor(Math.random() * 5)+1;
@@ -29,11 +30,12 @@ import colors from 'colors';
 //le da comienzo a los distintos juegos
       public inicioJuego(): void{
         console.log(` Dinero disponible: ${this.dineroDisponible}$`  );
+        console.log(colors.bgMagenta(`Inicia el juego. Mucha suerte!`));
+        this.apostar();
         let numeroApuesta; 
         let color;
         numeroApuesta = readlineSync.questionInt(colors.red("Ingrese numero elegido:  ")); 
         color = readlineSync.question(colors.blue("Ingrese color de apuesta:  "));
-     this.apostar();
         console.log(colors.cyan(`
                                   | ------------------------|
                                   | Se cierran las apuestas |
@@ -69,6 +71,8 @@ import colors from 'colors';
           if (seguirAbandonar == "S") {
             this.inicioJuego();
           } else if (seguirAbandonar === "N") {
+            let menu=new Menu();
+            menu.getElegirJuego();
             console.log(`Gracias por jugar con nosotros`);
 
           }
@@ -85,12 +89,12 @@ import colors from 'colors';
           if (apuestaLocal > 0) {
              this.dineroDisponible = this.dineroDisponible - apuestaLocal; 
             this.dineroApuesta = apuestaLocal; 
-          } else {
+          } else if (apuestaLocal === 0){
             console.log(colors.yellow("Saldo insuficiente. Por favor, Ingrese un monto válido")); 
           }
           console.log(colors.cyan(`SE LE RESTAN ${this.dineroApuesta}`)); 
        console.log(colors.red(`DINERO DISPONIBLE : ${this.dineroDisponible}`)); 
-        } while (apuestaLocal <= 0); //mientras que// si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
+        } while (apuestaLocal < 0); //mientras que// si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
       }
 
       }

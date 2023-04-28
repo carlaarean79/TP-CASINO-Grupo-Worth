@@ -1,3 +1,4 @@
+import { Menu } from ".";
 import { Tragamonedas } from "./Tragamonedas";
 import { Jugar } from "./interface";
 import colors from "colors"
@@ -22,6 +23,7 @@ public getPozoAcumulado ():number {
 public inicioJuego():void {
     console.log(colors.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
     console.log(` Dinero disponible: ${this.dineroDisponible}$`  );
+    console.log(colors.bgMagenta(`Inicia el juego. Mucha suerte!`));
     this.apostar();
     console.log(`Procesando...***tulin tulin---tulin tulin---***`);
         let lineas1 = ["manzana","banana","naranja","pera"]
@@ -70,6 +72,8 @@ public inicioJuego():void {
             this.dineroDisponible = this.dineroDisponible;
             this.inicioJuego();
           } else if (seguirAbandonar === "N") {
+            let menu=new Menu();
+            menu.getElegirJuego();
             console.log(`Gracias por jugar con nosotros`);
           }
          
@@ -81,7 +85,7 @@ public inicioJuego():void {
     public probabilidadDeGanar():void{
     let cantLineas;
     cantLineas = readlineSync.questionInt(
-     colors.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 2 y 4 y vea cuales son sus probabilidades de acertar:  "
+     colors.bgGreen("Antes de empezar el juego, vea cuales son sus probabilidades de acertar 2,3 o 4 lineas. Ingrese una opción: "
     ));
       let probabilidad: number = Math.floor(Math.random() * 4)+1; 
 console.log(colors.red(`La probabilidad de acertar ${cantLineas} lineas es de`),
@@ -95,14 +99,15 @@ console.log(colors.red(`La probabilidad de acertar ${cantLineas} lineas es de`),
     public apostar(): void {
         let apuestaLocal: number; 
         do { //hacer
-          apuestaLocal = readlineSync.questionInt(colors.bgBlue("Ingrese su apuesta: "));         if (apuestaLocal > 0) {//condicion que evalua el monto ingresado sea mayor a 0
+          apuestaLocal = readlineSync.questionInt(colors.bgBlue("Ingrese su apuesta: "));      
+             if (apuestaLocal > 0) {//condicion que evalua el monto ingresado sea mayor a 0
             this.dineroDisponible = this.dineroDisponible - apuestaLocal; 
             this.dineroApuesta = apuestaLocal; 
-          } else {
+          } else if (apuestaLocal === 0){
             console.log(colors.red("Saldo insuficiente. Por favor, ingrese un monto válido")); 
           }
           console.log(colors.red(`SE LE RESTAN ${this.dineroApuesta}`));
           console.log(colors.green(`SALDO DISPONIBLE: ${this.dineroDisponible}`));
-        } while (apuestaLocal <= 0); //mientras que//si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
+        } while (apuestaLocal < 0); //mientras que//si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
       }
 } // fin de la sub clase

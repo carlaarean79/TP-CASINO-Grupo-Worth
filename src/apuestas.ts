@@ -32,7 +32,5 @@ export class Apuestas {  // Comiezo de la clase Apuesta //superclase, padre
       }   // este metodo si bien simula ser un menú de opciones, no se pudo modificar para que al elegir
       //una opción redireccione al juego seleccionado. Por lo tanto la elección es forzada e irá en 
       //orden cde como se llamaron a los distintos nuevos objetos
-    public probabilidadDeGanar(){
-
-    }
+  
 } // fin de la clase Apuesta

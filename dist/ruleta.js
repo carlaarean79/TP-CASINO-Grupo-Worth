@@ -30,6 +30,7 @@ exports.Ruleta = void 0;
 const apuestas_1 = require("./apuestas");
 const readlineSync = __importStar(require("readline-sync"));
 const colors_1 = __importDefault(require("colors"));
+const _1 = require(".");
 //SE CREO LA CLASE RULETA QUE EXTIENDE DE LA SUPERCLASE APUESTAS E IMPLENTA LA INTERFAZ JUGAR
 class Ruleta extends apuestas_1.Apuestas {
     constructor(pdineroDisponible, pdineroApuesta) {
@@ -41,7 +42,7 @@ class Ruleta extends apuestas_1.Apuestas {
     // se implementan los metodos de la interface jugar que ruleta esta obligada a utilizar o respetar por contrato 
     probabilidadDeGanar() {
         let nroApuesta;
-        nroApuesta = readlineSync.questionInt(colors_1.default.bgGreen("Ingrese un numero y vea cuales son sus probabilidades de ganar :  "));
+        nroApuesta = readlineSync.questionInt(colors_1.default.bgGreen("Antes de comenzar el juego, ingrese un numero y vea cuales son sus probabilidades de ganar :  "));
         let probabilidad = Math.floor(Math.random() * 5) + 1;
         console.log(colors_1.default.red(`La probabilidad de sacar un ${nroApuesta} es de`), colors_1.default.red(`*****${probabilidad} en ${Math.floor(Math.random() * 36) + 1} *****`));
         this.inicioJuego();
@@ -50,11 +51,12 @@ class Ruleta extends apuestas_1.Apuestas {
     //le da comienzo a los distintos juegos
     inicioJuego() {
         console.log(` Dinero disponible: ${this.dineroDisponible}$`);
+        console.log(colors_1.default.bgMagenta(`Inicia el juego. Mucha suerte!`));
+        this.apostar();
         let numeroApuesta;
         let color;
         numeroApuesta = readlineSync.questionInt(colors_1.default.red("Ingrese numero elegido:  "));
         color = readlineSync.question(colors_1.default.blue("Ingrese color de apuesta:  "));
-        this.apostar();
         console.log(colors_1.default.cyan(`
                                   | ------------------------|
                                   | Se cierran las apuestas |
@@ -81,6 +83,8 @@ class Ruleta extends apuestas_1.Apuestas {
             this.inicioJuego();
         }
         else if (seguirAbandonar === "N") {
+            let menu = new _1.Menu();
+            menu.getElegirJuego();
             console.log(`Gracias por jugar con nosotros`);
         }
     }
@@ -94,12 +98,12 @@ class Ruleta extends apuestas_1.Apuestas {
                 this.dineroDisponible = this.dineroDisponible - apuestaLocal;
                 this.dineroApuesta = apuestaLocal;
             }
-            else {
+            else if (apuestaLocal === 0) {
                 console.log(colors_1.default.yellow("Saldo insuficiente. Por favor, Ingrese un monto válido"));
             }
             console.log(colors_1.default.cyan(`SE LE RESTAN ${this.dineroApuesta}`));
             console.log(colors_1.default.red(`DINERO DISPONIBLE : ${this.dineroDisponible}`));
-        } while (apuestaLocal <= 0); //mientras que// si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
+        } while (apuestaLocal < 0); //mientras que// si la apuesta ingresada en menor o igual a cero, el ciclo se vuelve a ejecutar
     }
 }
 exports.Ruleta = Ruleta;

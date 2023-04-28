@@ -1,3 +1,4 @@
+import { Menu } from ".";
 import { Tragamonedas } from "./Tragamonedas";
 import { Jugar } from "./interface";
 import colors from "colors"
@@ -22,6 +23,7 @@ public getPozoAcumulado ():number {
 public inicioJuego():void {
     console.log(colors.bgGreen(`Pozo acumulado ${this.pozoAcumulado} $`));
     console.log(` Dinero disponible: ${this.dineroDisponible}$`  );
+    console.log(colors.bgMagenta(`Inicia el juego. Mucha suerte!`));
         this.apostar();
     console.log(`Procesando ....***tulin tulin---tulin tulin---***`);
         let lineas1 = ["Diamante","Gema","Rubi","Amatista"]
@@ -69,6 +71,8 @@ public inicioJuego():void {
           if (seguirAbandonar == "S") {
             this.inicioJuego();
           } else if (seguirAbandonar === "N") {
+            let menu=new Menu();
+            menu.getElegirJuego();
             console.log(`Gracias por jugar con nosotros`);
           } 
     
@@ -79,7 +83,7 @@ public inicioJuego():void {
     public probabilidadDeGanar():void{
     let cantLineas;
     cantLineas = readlineSync.questionInt(
-     colors.bgGreen("Ingrese que cantidad de lineas quiere apostar entre 2 y 4 y vea cuales son sus probabilidades de acertar:  "
+     colors.bgGreen("Antes de empezar el juego, vea cuales son sus probabilidades de acertar 2,3 o 4 lineas. Ingrese una opción: "
     )); 
       let probabilidad: number = Math.floor(Math.random() * 4)+1; 
 console.log(colors.red(`La probabilidad de acertar ${cantLineas} lineas es de`),
